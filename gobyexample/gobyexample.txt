@@ -1,0 +1,20 @@
+First program "classic Hello World"
+
+/* helloworld.go */
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello World")
+}
+
+$ go run helloworld.go
+Hello World
+
+$ go build helloworld.go
+$ ls
+helloworld helloworld.go
+
+$ ./helloworld
+Hello World
