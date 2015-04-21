@@ -1,20 +1,963 @@
-First program "classic Hello World"
+Go By Example
 
-/* helloworld.go */
+=======================================
+/* hello-world.go */
 package main
 
 import "fmt"
 
 func main() {
-    fmt.Println("Hello World")
+    fmt.Println("hello world")
+}
+=======================================
+$ go run hello-world.go
+hello world
+
+$ go build hello-world.go
+$ ls
+hello-world    hello-world.go
+
+$ ./hello-world
+hello world
+
+
+
+=======================================
+/* values.go */
+package main
+
+import "fmt"
+
+func main() {
+    // string concatination with +
+    fmt.Println("go" + "lang")
+    
+    // Integers and Floats
+    fmt.Println("1+1 =", 1+1)
+    fmt.Println("7.0/3.0 =", 7.0/3.0)
+    
+    // Booleans
+    fmt.Println(true && false)
+    fmt.Println(true || false)
+    fmt.Println(!true)
+}
+=======================================
+$ go run values.go
+golang
+1+1 = 2
+7.0/3.0 = 2.3333333333333335
+false
+true
+false
+
+
+
+=======================================
+/* variables.go */
+package main
+
+import "fmt"
+
+func main() {
+    // var declares 
+    var a string = "initial"
+    fmt.Println(a)
+    
+    // declare multiple variables at once
+    var b, c int = 1, 2
+    fmt.Println(b, c)
+    
+    // go will infer the type of initialized variables
+    var d = true
+    fmt.Println(d)
+    
+    // variables without initialization are zero valued
+    var e int
+    fmt.Println(e)
+    
+    // 
+    f := "short"
+    fmt.Println(f)
+}
+=======================================
+$ go run variables.go
+initial
+1 2
+true
+0
+short
+
+
+
+=======================================
+/* constant.go */
+package main
+
+import "fmt"
+import "math"
+
+// const declares a constant value
+const s string = "constant"
+
+func main() {
+    fmt.Println(s)
+    
+    // const statement can appear anywhere a var statement can
+    const n = 500000000
+    const d = 3e20 / n
+    fmt.Println(d)
+    
+    // numeric constant has no type until it is given one such as by explicit cast
+    fmt.Println(int64(d))
+    
+    // using the numeric constant in a context that requires a type also gives it a type
+    fmt.Println(math.Sin(n))
+}
+=======================================
+$ go run constant.go
+constant
+6e+11
+600000000000
+-0.28470407323754404
+
+
+
+=======================================
+/* for.go */
+package main
+
+import "fmt"
+
+func main() {
+    
+    // Basic type with a single condition
+    i := 1
+    for i <= 3 {
+        fmt.Println(i)
+        i = i + 1
+    }
+    
+    // Classic initial - condition - after loop
+    for j := 7; j <= 9; j++ {
+        fmt.Println(j)
+    }
+    
+    // for without a condition will loop repeatedly until we break out
+    for {
+        fmt.Println("loop")
+        break
+    }
+}
+=======================================
+$ go run for.go
+1
+2
+3
+7
+8
+9
+loop
+
+
+
+=======================================
+/* if-else.go */
+package main
+
+import "fmt"
+
+// Go does not have a ternary if statement
+// we will have to use a full if statement even for basic conditions
+
+func main() {
+
+    if 7%2 == 0 {
+        fmt.Println("7 is even")
+    } else {
+        fmt.Println("7 is odd")
+    }
+    
+    if 8%4 == 0 {
+        fmt.Println("8 is divisible by 4")
+    }
+    
+    if num := 9; num < 0 {
+        fmt.Println(num, "is negative")
+    } else if num < 10 {
+        fmt.Println(num, "has 1 digit")
+    } else {
+        fmt.Println(num, "has multiple digits")
+    }
+}
+=======================================
+$ go run if-else.go
+7 is odd
+8 is divisible by 4
+9 has 1 digit
+
+
+
+=======================================
+/* switch.go */
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+
+    i := 2
+    fmt.Print("write ", i, " as ")
+    
+    // basic switch
+    switch i {
+    case 1:
+        fmt.Println("one")
+    case 2:
+        fmt.Println("two")
+    case 3:
+        fmt.Println("three")
+    }
+    
+    // we can use commas to seperate multiple expressions
+    // in the same case statement
+    switch time.Now().Weekday() {
+    case time.Saturday, time.Sunday:
+        fmt.Println("it's weekend")
+    default:
+        fmt.Println("it's a weekday")
+    }
+    
+    // switch without an expression
+    // this is an alternate way to express if-else logic
+    t := time.Now()
+    switch {
+    case t.Hour() < 12:
+        fmt.Println("it's before noon")
+    default:
+        fmt.Println("it's after noon")
+    }
+}
+=======================================
+$ go run switch.go
+write 2 as two
+it's a weekday
+it's before noon
+
+
+
+=======================================
+/* arrays.go */
+package main
+
+import "fmt"
+
+func main() {
+
+    // Here we create an array that will hold 5 ints
+    // Array length and type of elements are part of the arrays type
+    // by default an array is zero-valued, which for ints means 0s
+    var a [5]int
+    fmt.Println("empty:",a)
+    
+    a[4] = 100
+    fmt.Println("set:",a)
+    fmt.Println("get:",a[4])
+    fmt.Println("length:",len(a))
+    
+    // one line declaration and initialization of an array    
+    b := [5]int{1,2,3,4,5}
+    fmt.Println("dcl:",b)
+    
+    var twoD [2][3]int
+    for i := 0; i < 2; i++ {
+        for j = 0; j < 3; j++ {
+            twoD[i][j] = i + j
+        }
+    }
+    fmt.Println("2D",twoD)
+}
+=======================================
+$ go run arrays.go
+empty: [0 0 0 0 0]
+set: [0 0 0 0 100]
+get: 100
+length: 5
+dcl: [1 2 3 4 5]
+2D [[0 1 2] [1 2 3]]
+
+
+
+=======================================
+/* slices.go */
+package main
+
+import "fmt"
+
+func main() {
+
+    // slices are typed only by the elements they contain, not the number of elements
+    // make is used to create an empty non-zero lenth slice
+    s := make([]string, 3)
+    fmt.Println("emp:", s)
+    
+    s[0] = "a"
+    s[1] = "b"
+    s[2] = "c"
+    fmt.Println("set:", s)
+    fmt.Println("get:", s[2])
+    fmt.Println("len:", len(s))
+    
+    
+    // slices support many rich operations, append is one of them
+    // append returns a slice containing one or more new values
+    s = append(s, "d")
+    s = append(s, "e", "f")
+    fmt.Println("apd:", s)
+    
+    
+    // slices can also be copied
+    c := make([]string, len(s))
+    copy(c, s)
+    fmt.Println("cpy:", c)
+    
+    
+    // slices support a slice operator whos syntax is slice[low:high]
+    // s[2:5] gets a slice of elements s[2], s[3], and s[4]
+    l := s[2:5]
+    fmt.Println("sl1:", l)
+    
+    // slices upto but excluding s[5]
+    l := s[:5]
+    fmt.Println("sl2:", l)
+    
+    // slices up from and including s[2]
+    l := s[2:]
+    fmt.Println("sl3:", l)
+    
+    // declare and initialize a slice variable in one line
+    t := []string{"g","h","i"}
+    fmt.Println("dcl:", t)
+    
+    
+    // slices can be composed in to multi dimentional data
+    // unlike with multi dimentional arrays, length of inner slices can vary
+    twoD := make([][]int, 3)
+    for i := 0; i < 3; i++ {
+        innerLen := i + 1
+        twoD[i] = make([]int, innerLen)
+        for j := 0; j < innerLen; j++ {
+            twoD[i][j] = i + j
+        }
+    }
+    fmt.Println("2D:", twoD)
+}
+=======================================
+$ go run slices.go
+emp: [  ]
+set: [a b c]
+get: c
+len: 3
+apd: [a b c d e f]
+cpy: [a b c d e f]
+sl1: [c d e]
+sl2: [a b c d e]
+sl3: [c d e f]
+dcl: [g h i]
+2D: [[0] [1 2] [2 3 4]]
+
+
+
+=======================================
+/* maps.go */
+package main
+
+import "fmt"
+
+// maps are go's built-in associative data type
+// maps are similar to hashes and dictionaries in other languages
+
+func main() {
+
+    // creating map with make
+    m := make(map[string]int)
+
+    m["K1"]=7
+    m["K2"]=14
+
+    fmt.Println("map:", m)
+
+    // retrive the value of key K1
+    V1 := m["K1"]
+    fmt.Println("V1:", V1)
+
+    fmt.Println("len:", len(m))
+
+    // delete removes key-value pair from a map
+    delete(m, "K2")
+    fmt.Println("map:", m)
+
+    // optional second return value when getting a value from a map indicates if the key was present in the map
+    // so the second return value can be used differentiate between missing keys and keys with zero values like 0 or ""
+    // here we did not need the value itself so we ignored it with the blank identifier _
+    _, prs := m["K2"]
+    fmt.Println("prs:", prs)
+    
+    // declare and initialize a new map in one line
+    n := map[string]int{"foo": 1, "bar": 2}
+    fmt.Println("map:", n)
+}
+=======================================
+$ go run maps.go
+map: map[K2:14 K1:7]
+V1: 7
+len: 2
+map: map[K1:7]
+prs: false
+map: map[foo:1 bar:2]
+
+
+
+=======================================
+/* range.go */
+/* range iterates over elements in a variety of data structures */
+package main
+
+import "fmt"
+
+func main() {
+
+    /* here we are using range to sum the numbers in a slice */
+    /* range on arrays and slices provides index and value for each entry */
+    /* here we don't need the index so we ignored it with blank identifier _ */
+    nums := []int{2, 3, 4}
+    sum := 0
+    for _, num := range nums {
+        sum += num
+    }
+    fmt.Println("sum:", sum)
+    
+    
+    /* here we are using both the index and value returned by range */
+    for i, num := range nums {
+        if num == 3 {
+            fmt.Println("index:", i)
+        }
+    }
+    
+    /* range on map iterates over key - value pair */
+    kvs := map[string]string{"a": "apple", "b": "banana"}
+    for k, v := range kvs {
+        fmt.Printf("%s -> %s\n", k, v)
+    }
+    
+    /* range on strings iterates over Unicode code points */
+    for i, c := range "go" {
+        fmt.Println(i, c)
+    }
+}
+=======================================
+$ go run range.go
+sum: 9
+index: 1
+a -> apple
+b -> banana
+0 103
+1 111
+
+
+
+=======================================
+/* functions.go */
+package main
+
+import "fmt"
+
+func plus(a int, b int) int {
+    return a + b
 }
 
-$ go run helloworld.go
-Hello World
+func plusPlus(a, b, c int) int {
+    return a + b + c
+}
 
-$ go build helloworld.go
-$ ls
-helloworld helloworld.go
+func main() {
+    
+    res := plus(1,2)
+    fmt.Println("1+2 = ", res)
+    
+    res = plusPlus(1,2,3)
+    fmt.Println("1+2+3 = ", res)
 
-$ ./helloworld
-Hello World
+}
+=======================================
+$ go run functions.go
+1+2 =  3
+1+2+3 =  6
+
+
+
+=======================================
+/* multiple-return-values.go */
+package main
+
+import "fmt"
+
+/* (int, int) in the function signature */
+func vals() (int, int) {
+    return 3, 7
+}
+
+func main() {
+
+    a, b := vals()
+    fmt.Println(a)
+    fmt.Println(b)
+    
+    /* blank identifier _ is used to discard the first value */
+    _, c := vals()
+    fmt.Println(c)
+    
+}
+=======================================
+$ go run multiple-return-values.go
+3
+7
+7
+
+
+
+=======================================
+/* variadic-functions.go */
+/* variadic functions can be called with any number of trailing arguments */
+/* fmt.Println is a common variadic function */
+
+package main
+
+import "fmt"
+
+/* sum function here will take an arbitrary number of int arguments */
+func sum(nums ...int) {
+    fmt.Print(nums, " ")
+    total := 0
+    for _, num := range nums {
+        total += num
+    }
+    fmt.Println(total)
+}
+
+func main() {
+
+    sum(1,2)
+    sum(1,2,3)
+    
+    /* we can also pass a slice to our sum function */
+    nums := []int{1,2,3,4}
+    sum(nums...)
+    
+}
+=======================================
+$ go run variadic-functions.go
+[1 2] 3
+[1 2 3] 6
+[1 2 3 4] 10
+
+
+
+=======================================
+/* closures.go */
+/* Go supports annonymous functions which can form closures */
+
+package main
+
+import "fmt"
+
+/* This function returns another function which is defined 
+anonymously in the body of this function.
+The returned function closes over the variable i to form a closure */
+
+func intSeq() func() int {
+    i := 0
+    return func() int {
+        i += 1
+        return i
+    }
+}
+
+func main() {
+
+    /* We call intSeq assigning the resulting function to nextInt 
+    function captures its own value of i, and will be updated each time we call nextInt*/
+    nextInt := intSeq()
+    
+    fmt.Println(nextInt())
+    fmt.Println(nextInt())
+    fmt.Println(nextInt())
+    
+    /* State is unique to a particular function
+    If we create a new function then the value of i is different*/
+    newInts := intSeq()
+    fmt.Println(newInts())
+    
+}
+=======================================
+$ go run closures.go
+1
+2
+3
+1
+
+
+
+=======================================
+/* recursion.go */
+package main
+
+import "fmt"
+
+func fact(n int) int {
+    if n == 0 {
+        return 1
+    }
+    return n * fact(n-1)
+}
+
+func main() {
+    fmt.Println(fact(7))
+}
+=======================================
+$ go run recursion.go
+5040
+
+
+
+=======================================
+/* pointers.go */
+package main
+
+import "fmt"
+
+func zeroval(ival int) {
+    ival = 0
+}
+
+func zeroptr(iptr *int) {
+    *iptr = 0
+}
+
+func main() {
+    i := 1
+    fmt.Println("initial:", i)
+    
+    zeroval(i)
+    fmt.Println("zeroal:", i)
+    
+    zeroptr(&i)
+    fmt.Println("zeroptr:", i)
+    
+    fmt.Println("pointer:", &i)
+}
+=======================================
+$ go run pointers.go
+initial: 1
+zeroal: 1
+zeroptr: 0
+pointer: 0xc20800a200
+
+
+
+=======================================
+/* structs.go */
+package main
+
+import "fmt"
+
+/* person struct with name and age fields */
+type person struct {
+    name string
+    age int
+}
+
+func main() {
+
+    /* Syntax to initialize a new struct */
+    fmt.Println(person{"Bob",20})
+    
+    /* we can name the fields when initializing a struct */
+    fmt.Println(person{name: "Alice", age: 30})
+    
+    /* ommited fields will be zero valued*/
+    fmt.Println(person{name: "Fred"})
+    
+    /* & prefix yields a pointer to the struct */
+    fmt.Println(&person{name: "Ann", age: 40})
+    
+    /* we can access struct fields with dot notation */
+    s := person{name: "Sean", age: 50}
+    fmt.Println(s.name)
+    
+    /* we can use the same dot notation with struct pointers as well */
+    /* i.e. the pointers are automatically dereferenced */
+    sp := &s
+    fmt.Println(sp.age)
+    
+    /* structs are mutable */
+    sp.age = 51
+    fmt.Println(sp.age)
+
+}
+=======================================
+$ go run structs.go
+{Bob 20}
+{Alice 30}
+{Fred 0}
+&{Ann 40}
+Sean
+50
+51
+
+
+
+=======================================
+/* methods.go */
+package main
+
+import "fmt"
+
+/* Go supports methods defined on struct types */
+type rect struct {
+    width, height int
+}
+
+/* area method has a receiver of type pointer to rect */
+func (r *rect) area() int {
+    return r.width * r.height
+}
+
+/* perim method has a receiver of type rect */
+/* Methods can be defined for either pointer or value receiver types */
+func (r rect) perim() int {
+    return 2*r.width + 2*r.height
+}
+
+func main() {
+    r := rect{width: 10, height: 5}
+    
+    fmt.Println("area: ", r.area())
+    fmt.Println("perim: ", r.perim())
+    
+    /* Go automatically handles conversion between values and pointers for method calls */
+    /* We should use pointer receiver type to avoid copying on method calls */
+    /* We should use pointer receiver type to allow the method to change the receiving struct */
+    rp := &r
+    fmt.Println("area: ", rp.area())
+    fmt.Println("perim: ", rp.perim())
+}
+=======================================
+$ go run methods.go
+area:  50
+perim:  30
+area:  50
+perim:  30
+
+
+
+=======================================
+/* interfaces.go */
+/* Interfaces are named collection of method signatures */
+
+package main
+
+import "fmt"
+import "math"
+
+/* basic interface for geometric shapes */
+type geometry interface {
+    area() float64
+    perim() float64
+}
+
+type rect struct {
+    width, height float64
+}
+
+type circle struct {
+    radius float64
+}
+
+/* rect implements the geometry interface */
+func (r rect) area() float64 {
+    return r.width * r.height
+}
+
+func (r rect) perim() float64 {
+    return 2*r.width + 2*r.height
+}
+
+/* circle also implements the geometry interface */
+func (c circle) area() float64 {
+    /* area os a circle is Pi r square */
+    return math.Pi * c.radius * c.radius
+}
+
+func (c circle) perim() float64 {
+    /* perimeter of a circle is 2 Pi r */
+    return 2 * math.Pi * c.radius
+}
+
+/* Generic measure function taking advantage of interface to work on any geometry */
+func measure(g geometry) {
+    fmt.Println(g)
+    fmt.Println(g.area())
+    fmt.Println(g.perim())
+}
+
+func main() {
+    r := rect{width: 3, height: 4}
+    c := circle{radius: 5}
+    
+    measure(r)
+    measure(c)
+}
+=======================================
+$ go run interfaces.go
+{3 4}
+12
+14
+{5}
+78.53981633974483
+31.41592653589793
+
+
+
+=======================================
+/* errors.go */
+/* In Go its idiomatic to communicate errors via an explicit seperate return value */
+/* Go's approach makes it easy to handle errors with same language constructs that 
+are used for any other non-erroe tasks */
+
+package main
+
+import "errors"
+import "fmt"
+
+/* By convention, errors are the last return values and have a type error, a built-in interface */
+func f1(arg int) (int, error) {
+    if arg == 42 {
+        /* error.New constructs a basic error value with the given error message */
+        return -1, errors.New("can't work with 42")
+    }
+    
+    /* nil value in the error position indicates that there was no error */
+    return arg + 3, nil
+}
+
+
+/* We can use custom types as errors by implementing the Error() method on the custom type */
+/* Below is a variant of the example above that uses a custom type to represent an argument error */
+type argError struct {
+    arg int
+    prob string
+}
+/* Error() method of our custom type */
+func (e *argError) Error() string {
+    return fmt.Sprintf("%d - %s", e.arg, e.prob)
+}
+
+func f2(arg int) (int, error) {
+    if arg == 42 {
+        /* here we use &argError syntax to build a new struct, with two fields arg, and prob */
+        return -1, &argError{arg, "can't work with it"}
+    }
+    return arg + 3, nil
+}
+
+func main() {
+
+    /* test out each of our error-returning functions */
+    /* use of inline error check on the if line is a common idiom in Go */
+    for _, i := range []int{7,42} {
+        /* inline error check */
+        if r, e := f1(i); e != nil {
+            fmt.Println("f1 failed: ", e)
+        } else {
+            fmt.Println("f1 worked: ", r)
+        }
+    }
+    
+    for _, i := range []int{7, 42} {
+        /* inline error check */
+        if r, e := f2(i); e != nil {
+            fmt.Println("f2 failed: ", e)
+        } else {
+            fmt.Println("f2 worked: ", r)
+        }
+    }
+    
+    /* here we get the error as an instance of the custom error type and */
+    /* programmatically use the data in our custom error type */
+    _, e := f2(42)
+    if ae, ok := e.(*argError); ok {
+        fmt.Println(ae.arg)
+        fmt.Println(ae.prob)
+    }
+
+}
+=======================================
+$ go run errors.go
+f1 worked:  10
+f1 failed:  can't work with 42
+f2 worked:  10
+f2 failed:  42 - can't work with it
+42
+can't work with it
+
+
+
+=======================================
+/* goroutiens.go */
+/* goroutine is a lightweight thread of execution */
+package main
+
+import "fmt"
+
+func f(from string) {
+    for i := 0; i < 3; i++ {
+        fmt.Println(from, ":", i)
+    }
+}
+
+func main() {
+
+    /* here's how we would call a function usualy */
+    f("direct")
+    
+    /* invoke the same function as a goroutine */
+    go f("goroutine")
+    
+    /* goroutine for an anonymous function */
+    go func(msg string) {
+        fmt.Println(msg)
+    }("going")
+    
+    var input string
+    fmt.Scanln(&input)
+    fmt.Println("done")
+
+}
+=======================================
+$ go run goroutines.go
+direct : 0
+direct : 1
+direct : 2
+goroutine : 0
+going
+goroutine : 1
+goroutine : 2
+<enter>
+done
+
+
+
+=======================================
+/* channels.go */
