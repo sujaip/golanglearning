@@ -1,2 +1,2 @@
 # golanglearning
-repository of golang learning material
+repository of golang learning material collected from net
