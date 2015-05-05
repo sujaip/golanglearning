@@ -1,6 +1,6 @@
-Go By Example
+Golang notes from reading GoByExample.com by Mark McGranaghan
 
-=======================================
+=================================================================================
 /* hello-world.go */
 package main
 
@@ -9,7 +9,7 @@ import "fmt"
 func main() {
     fmt.Println("hello world")
 }
-=======================================
+=================================================================================
 $ go run hello-world.go
 hello world
 
@@ -22,7 +22,7 @@ hello world
 
 
 
-=======================================
+=================================================================================
 /* values.go */
 package main
 
@@ -41,7 +41,7 @@ func main() {
     fmt.Println(true || false)
     fmt.Println(!true)
 }
-=======================================
+=================================================================================
 $ go run values.go
 golang
 1+1 = 2
@@ -52,7 +52,7 @@ false
 
 
 
-=======================================
+=================================================================================
 /* variables.go */
 package main
 
@@ -79,7 +79,7 @@ func main() {
     f := "short"
     fmt.Println(f)
 }
-=======================================
+=================================================================================
 $ go run variables.go
 initial
 1 2
@@ -89,7 +89,7 @@ short
 
 
 
-=======================================
+=================================================================================
 /* constant.go */
 package main
 
@@ -113,7 +113,7 @@ func main() {
     // using the numeric constant in a context that requires a type also gives it a type
     fmt.Println(math.Sin(n))
 }
-=======================================
+=================================================================================
 $ go run constant.go
 constant
 6e+11
@@ -122,7 +122,7 @@ constant
 
 
 
-=======================================
+=================================================================================
 /* for.go */
 package main
 
@@ -148,7 +148,7 @@ func main() {
         break
     }
 }
-=======================================
+=================================================================================
 $ go run for.go
 1
 2
@@ -160,7 +160,7 @@ loop
 
 
 
-=======================================
+=================================================================================
 /* if-else.go */
 package main
 
@@ -189,7 +189,7 @@ func main() {
         fmt.Println(num, "has multiple digits")
     }
 }
-=======================================
+=================================================================================
 $ go run if-else.go
 7 is odd
 8 is divisible by 4
@@ -197,7 +197,7 @@ $ go run if-else.go
 
 
 
-=======================================
+=================================================================================
 /* switch.go */
 package main
 
@@ -238,7 +238,7 @@ func main() {
         fmt.Println("it's after noon")
     }
 }
-=======================================
+=================================================================================
 $ go run switch.go
 write 2 as two
 it's a weekday
@@ -246,7 +246,7 @@ it's before noon
 
 
 
-=======================================
+=================================================================================
 /* arrays.go */
 package main
 
@@ -277,7 +277,7 @@ func main() {
     }
     fmt.Println("2D",twoD)
 }
-=======================================
+=================================================================================
 $ go run arrays.go
 empty: [0 0 0 0 0]
 set: [0 0 0 0 100]
@@ -288,7 +288,7 @@ dcl: [1 2 3 4 5]
 
 
 
-=======================================
+=================================================================================
 /* slices.go */
 package main
 
@@ -352,7 +352,7 @@ func main() {
     }
     fmt.Println("2D:", twoD)
 }
-=======================================
+=================================================================================
 $ go run slices.go
 emp: [  ]
 set: [a b c]
@@ -368,7 +368,7 @@ dcl: [g h i]
 
 
 
-=======================================
+=================================================================================
 /* maps.go */
 package main
 
@@ -407,7 +407,7 @@ func main() {
     n := map[string]int{"foo": 1, "bar": 2}
     fmt.Println("map:", n)
 }
-=======================================
+=================================================================================
 $ go run maps.go
 map: map[K2:14 K1:7]
 V1: 7
@@ -418,7 +418,7 @@ map: map[foo:1 bar:2]
 
 
 
-=======================================
+=================================================================================
 /* range.go */
 /* range iterates over elements in a variety of data structures */
 package main
@@ -456,7 +456,7 @@ func main() {
         fmt.Println(i, c)
     }
 }
-=======================================
+=================================================================================
 $ go run range.go
 sum: 9
 index: 1
@@ -467,7 +467,7 @@ b -> banana
 
 
 
-=======================================
+=================================================================================
 /* functions.go */
 package main
 
@@ -490,14 +490,14 @@ func main() {
     fmt.Println("1+2+3 = ", res)
 
 }
-=======================================
+=================================================================================
 $ go run functions.go
 1+2 =  3
 1+2+3 =  6
 
 
 
-=======================================
+=================================================================================
 /* multiple-return-values.go */
 package main
 
@@ -519,7 +519,7 @@ func main() {
     fmt.Println(c)
     
 }
-=======================================
+=================================================================================
 $ go run multiple-return-values.go
 3
 7
@@ -527,7 +527,7 @@ $ go run multiple-return-values.go
 
 
 
-=======================================
+=================================================================================
 /* variadic-functions.go */
 /* variadic functions can be called with any number of trailing arguments */
 /* fmt.Println is a common variadic function */
@@ -556,7 +556,7 @@ func main() {
     sum(nums...)
     
 }
-=======================================
+=================================================================================
 $ go run variadic-functions.go
 [1 2] 3
 [1 2 3] 6
@@ -564,7 +564,7 @@ $ go run variadic-functions.go
 
 
 
-=======================================
+=================================================================================
 /* closures.go */
 /* Go supports annonymous functions which can form closures */
 
@@ -600,7 +600,7 @@ func main() {
     fmt.Println(newInts())
     
 }
-=======================================
+=================================================================================
 $ go run closures.go
 1
 2
@@ -609,7 +609,7 @@ $ go run closures.go
 
 
 
-=======================================
+=================================================================================
 /* recursion.go */
 package main
 
@@ -625,13 +625,13 @@ func fact(n int) int {
 func main() {
     fmt.Println(fact(7))
 }
-=======================================
+=================================================================================
 $ go run recursion.go
 5040
 
 
 
-=======================================
+=================================================================================
 /* pointers.go */
 package main
 
@@ -657,7 +657,7 @@ func main() {
     
     fmt.Println("pointer:", &i)
 }
-=======================================
+=================================================================================
 $ go run pointers.go
 initial: 1
 zeroal: 1
@@ -666,7 +666,7 @@ pointer: 0xc20800a200
 
 
 
-=======================================
+=================================================================================
 /* structs.go */
 package main
 
@@ -706,7 +706,7 @@ func main() {
     fmt.Println(sp.age)
 
 }
-=======================================
+=================================================================================
 $ go run structs.go
 {Bob 20}
 {Alice 30}
@@ -718,7 +718,7 @@ Sean
 
 
 
-=======================================
+=================================================================================
 /* methods.go */
 package main
 
@@ -753,7 +753,7 @@ func main() {
     fmt.Println("area: ", rp.area())
     fmt.Println("perim: ", rp.perim())
 }
-=======================================
+=================================================================================
 $ go run methods.go
 area:  50
 perim:  30
@@ -762,7 +762,7 @@ perim:  30
 
 
 
-=======================================
+=================================================================================
 /* interfaces.go */
 /* Interfaces are named collection of method signatures */
 
@@ -819,7 +819,7 @@ func main() {
     measure(r)
     measure(c)
 }
-=======================================
+=================================================================================
 $ go run interfaces.go
 {3 4}
 12
@@ -830,7 +830,7 @@ $ go run interfaces.go
 
 
 
-=======================================
+=================================================================================
 /* errors.go */
 /* In Go its idiomatic to communicate errors via an explicit seperate return value */
 /* Go's approach makes it easy to handle errors with same language constructs that 
@@ -903,7 +903,7 @@ func main() {
     }
 
 }
-=======================================
+=================================================================================
 $ go run errors.go
 f1 worked:  10
 f1 failed:  can't work with 42
@@ -914,7 +914,7 @@ can't work with it
 
 
 
-=======================================
+=================================================================================
 /* goroutiens.go */
 /* goroutine is a lightweight thread of execution */
 package main
@@ -945,7 +945,7 @@ func main() {
     fmt.Println("done")
 
 }
-=======================================
+=================================================================================
 $ go run goroutines.go
 direct : 0
 direct : 1
@@ -959,5 +959,2428 @@ done
 
 
 
-=======================================
+=================================================================================
 /* channels.go */
+
+/* Channels are pipes that connect concurrent goroutines */
+/* We can send values in to channels from one goroutine and receive those value into another goroutine */
+
+package main
+
+import "fmt"
+
+func main() {
+    
+    /* create a new channel with make(chan val-type) */
+    messages := make(chan string)
+    
+    /* send a value into a channel using channel <- syntax */
+    go func() { messages <- "ping" }()
+    
+    /* receive a value from channel using <-channel syntax */
+    msg := <-messages
+    fmt.Println(msg)
+    
+    /* by default sends and receives block until both the sender and receiver are ready */
+    /* this allows us to wait for the ping message without having to use any other synchronization */
+    
+}
+=================================================================================
+$ go run channels.go
+ping
+
+
+
+=================================================================================
+/* channel-buffering.go */
+
+/* Go channels are unbuffered by default */
+/* i.e. channels will only accept sends (chan <-) if there is a corresponding 
+receive (<- chan) ready to receive the sent value*/
+/* Buffered channels accept a limited number of values without a corresponding
+receiver for those values */
+
+package main
+
+import "fmt"
+
+func main() {
+
+    /* make a channel of strings which can buffer two values */
+    messages := make(chan string, 2)
+    
+    messages <- "buffered"
+    messages <- "channel"
+    
+    fmt.Println(<-messages)
+    fmt.Println(<-messages)
+    
+}
+=================================================================================
+$ go run channel-buffering.go
+buffered
+channel
+
+
+
+=================================================================================
+/* channel-synchronization.go */
+
+/* We can use channels to synchronize execution accross goroutines */
+/* Here we will use a blocking receive to wait for a goroutine to finish */
+
+package main
+
+import "fmt"
+import "time"
+
+/* we will run this function in a goroutime */
+func worker(done chan bool) {
+
+    fmt.Print("working...")
+    time.Sleep(time.Second)
+    fmt.Println("done")
+    
+    /* we use done channel to notify another goroutine */
+    done <- true
+
+}
+
+func main() {
+
+    /* make a boolean channel named done */
+    done := make(chan bool, 1)
+    
+    /* start a worker goroutine giving it the channel to notify */
+    go worker(done)
+    
+    /* waiting for the notification from worker */
+    <-done
+    
+    /* if we removed <-done line then the program would exit even before the worker started*/
+}
+=================================================================================
+$ go run channel-synchronization.go
+working...done
+
+
+
+=================================================================================
+/* channel-directions.go */
+
+/* when using channels as function parameters we can specify if a channel
+is meant to only send or receive values */
+/* this specificity increases the type-safety of the program */
+
+package main
+
+import "fmt"
+
+/* ping function that accepts a single channel (pings) for sending and a message string*/
+/* We will get a compile-time error if we try to receive on this channel */
+func ping(pings chan<- string, msg string) {
+    pings <- msg
+}
+
+/* pong function accepts a channel for receives (ping) and a second channel for sends (pong) */
+func pong(pings <-chan string, pongs chan<- string) {
+    msg := <-pings
+    pongs <- msg
+}
+
+func main() {
+
+    pings := make(chan string, 1)
+    pongs := make(chan string, 1)
+    
+    /* calling ping function with send channel pings and a message  */
+    ping(pings, "passed message")
+    
+    /* calling pong function with a receive channel pings and a send channel pongs*/
+    pong(pings, pongs)
+    
+    fmt.Println(<-pongs)
+
+}
+=================================================================================
+$ go run channel-directions.go
+passed message
+
+
+
+=================================================================================
+/* select.go */
+
+/* Go's select lets us wait on multiple channel operations */
+/* Combining goroutines and channels with select is a powerful feature of Go */
+
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+
+    /* make two sting channels */
+    ch1 := make(chan string)
+    ch2 := make(chan string)
+    
+    
+    /* each channel will receive a value after some amount of time*/
+    go func() {
+        time.Sleep(time.Second * 1)
+        ch1 <- "one"
+    }()
+    go func() {
+        time.Sleep(time.Second * 2)
+        ch2 <- "two"
+    }()
+    
+    /* here we use select to await both these values simultaneously */
+    /* we will print each message as it arives */
+    for i := 0; i < 2; i++ {
+        select {
+        case msg1 := <-ch1:
+            fmt.Println("received", msg1)
+        case msg2 := <-ch2:
+            fmt.Println("received", msg2)
+        }
+    }
+}
+=================================================================================
+$ time go run select.go
+received  one
+received two
+
+real	0m2.208s
+user	0m0.158s
+sys	0m0.057s
+
+NOTE: total execution time is only ~2 seconds, as both Sleeps execute concurrently
+
+
+=================================================================================
+/* timeouts.go */
+
+/* Timeouts are important for programs that connect to external resources
+or programs that need to bound execution time */
+/* In Go timeouts are implemented with channels and select */
+
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+
+    /* simulating an external call that returns its result on a channel after 2 seconds */
+    c1 := make(chan string, 1)
+    go func() {
+        time.Sleep(time.Second * 2)
+        c1 <- "result 1"
+    }()
+    
+    /* implementing timeout of 1 second using select */
+    select {
+    case res := <-c1:
+        fmt.Println(res)
+    case <-time.After(time.Second * 1):
+        fmt.Println("timeout 1")
+    }
+    
+    c2 := make(chan string, 1)
+    go func() {
+        time.Sleep(time.Second * 2)
+        c2 <- "result 2"
+    }()
+    
+    /* implementing timeout of 3 second using select */
+    select {
+    case res := <-c2:
+        fmt.Println(res)
+    case <-time.After(time.Second * 3):
+        fmt.Println("timeout 2")
+    }
+
+}
+=================================================================================
+$ go run timeouts.go
+timeout 1
+result 2
+
+real	0m3.228s
+user	0m0.180s
+sys	0m0.066s
+
+NOTE: Using the select timeout pattern requires communicating results over channels
+This is a good idea in general because other important Go features are based on channels
+
+
+=================================================================================
+/* non-blocking-channel-operations.go */
+
+/* Basic sends and receives on channels are blocking
+however, we can use select with a default clause to implement non-blocking sends,
+receives, and even non-blocking multi-way selects */
+
+package main
+
+import "fmt"
+
+func main() {
+
+    messages := make(chan string)
+    signals := make(chan bool)
+    
+    /* non-blocking receive:
+    If a value is available on messages then select will take the <-messages case with that value
+    If not it will immediately take the default case */
+    select {
+    case msg := <-messages:
+        fmt.Println("received messages", msg)
+    default:
+        fmt.Println("no message received")
+    }
+    
+    /* non-blocking send works the same way as well */
+    msg := "hi"
+    select {
+    case messages <- msg:
+        fmt.Println("sent message", msg)
+    default:
+        fmt.Println("no message sent")
+    }
+    
+    /* we can use multiple cases above the default clause to implement a multi-way non-blocking select */    
+    select {
+    case msg := <-messages:
+        fmt.Println("received message", msg)
+    case sig := <-signals:
+        fmt.Println("received signal",sig)
+    default:
+        fmt.Println("no activity")
+    }
+
+}
+=================================================================================
+$ go run non-blocking-channel-operations.go
+no message received
+no message sent
+no activity
+
+
+=================================================================================
+/* closing-channels.go */
+
+/* Closing a channel indicates that no more values will be sent on it */
+/* This is usefull to communicate completion to the channel's receivers */
+
+/* We will use jobs channel to communicate work to be done from the
+   main goroutine to a worker goroutine, we will close the jobs channel
+   when we don't have any more jobs for the worker goroutine */
+   
+package main
+
+import "fmt"
+
+func main() {
+
+    jobs := make(chan int, 5)
+    done := make(chan bool)
+
+/* Worker goroutine repeatedly receives from jobs channel with j, more := <-jobs
+   In this 2 value form of receive, "more" value will be false if jobs channel has been closed */
+    
+    go func() {
+        for {
+            j, more := <-jobs
+            if more {
+                fmt.Println("received job", j)
+            } else {
+                fmt.Println("received all jobs")
+                done <- true
+                return
+            }
+        }
+    }()
+
+/* We send 3 jobs to the worker over the jobs channel, then close it */
+    
+    for j := 1; j <= 3; j++ {
+        jobs <- j
+        fmt.Println("sent job", j)
+    }
+    close(jobs)
+    fmt.Println("sent all jobs")
+
+/* We await the worker using synchronization mechanism */    
+    <-done
+
+}
+=================================================================================
+$ go run closing-channels.go
+sent job 1
+sent job 2
+sent job 3
+sent all jobs
+received job 1
+received job 2
+received job 3
+received all jobs
+
+
+
+=================================================================================
+/* range-over-channels.go */
+
+/* for and range provide iteration over basic data structure
+we can use this syntax to iterate over values received from a channel */
+
+package main
+
+import "fmt"
+
+func main() {
+
+    queue := make(chan string, 2)
+    queue <- "one"
+    queue <- "two"
+    close(queue)
+    
+    for elem := range queue {
+        fmt.Println(elem)
+    }
+
+}
+=================================================================================
+$ go run range-over-channels.go
+one
+two
+
+
+
+=================================================================================
+/* timers.go */
+
+/* We often want to execute code at some point in the future, or repeatedly at some interval
+   Go's built-in timer and ticker features make both of these tasks easy */
+
+/* Timers represent a single event in the future
+   We tell the timer how long to wait, and it provides a channel that will be notified at that time */
+   
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+
+    /* This timer will wait for 2 sec */
+    timer1 := time.NewTimer(time.Second * 2)
+    
+    /* <-timer1.C blocks on the timer's channel C */
+    /* until it sends a value indicating that the timer expired */
+    <-timer1.C
+    fmt.Println("Timer 1 expired")
+    
+    /* We could have used time.Sleep instead of timer */
+    /* but timers can be canceled before they expires like below */
+    timer2 := time.NewTimer(time.Second)
+    go func() {
+        <-timer2.C
+        fmt.Println("Timer 2 expired")
+    }()
+    
+    stop2 := timer2.Stop()
+    if stop2 {
+        fmt.Println("Timer 2 stopped")
+    }
+
+}
+=================================================================================
+$ go run timers.go
+Timer 1 expired
+Timer 2 stopped
+
+
+
+=================================================================================
+/* tickers.go */
+/* tickers are for when we want to do something repeatedly at regular intervals */
+
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+
+    /*  */
+    ticker := time.NewTicker(time.Millisecond * 500)
+    go func() {
+        for t := range ticker.C {
+            fmt.Println("Tick at", t)
+        }
+    }()
+    
+    time.Sleep(time.Millisecond * 1500)
+    ticker.Stop()
+    fmt.Println("Ticker stopped")
+
+}
+=================================================================================
+$ go run tickers.go
+Tick at 2015-04-23 11:19:10.330934869 -0400 EDT
+Tick at 2015-04-23 11:19:10.831213846 -0400 EDT
+Tick at 2015-04-23 11:19:11.331183905 -0400 EDT
+Ticker stopped
+
+
+
+=================================================================================
+/* worker-pool.go */
+/* In this example we will look at how to implement a worker pool using goroutine and channels */
+
+package main
+
+import "fmt"
+import "time"
+
+func worker(id int, jobs <-chan int, results chan<- int) {
+
+    for j := range jobs {
+        fmt.Println("worker", id, "processing job", j)
+        time.Sleep(time.Second)
+        results <- j * 2
+    }
+
+}
+
+func main() {
+
+    jobs := make(chan int, 100)
+    results := make(chan int, 100)
+    
+    /* start 3 workers, but they are blocked as there are no jobs yet */
+    for w := 1; w <= 3; w++ {
+        go worker(w, jobs, results)
+    }
+    
+    /* send 9 jobs and then close the channel to indicate thats all we have */
+    for j := 1; j <= 9; j++ {
+        jobs <- j
+    }
+    close(jobs)
+    
+    /* we collect all the results of the work */
+    for a := 1; a <= 9; a++ {
+        <-results
+    }
+    
+}
+=================================================================================
+$ go run worker-pools.go
+worker 1 processing job 1
+worker 2 processing job 2
+worker 3 processing job 3
+worker 1 processing job 4
+worker 2 processing job 5
+worker 3 processing job 6
+worker 1 processing job 7
+worker 2 processing job 8
+worker 3 processing job 9
+
+Our program only takes about ~3 seconds despite doing about 9 seconds of total work
+because there are 3 workers operating concurrently
+
+=================================================================================
+/* rate-limiting.go */
+
+/* Rate limiting is an important mechanism for controlling resource utilization and
+maintaining quality of service, Go supports rate limiting with goroutines, channels, and tickers */
+
+package main
+
+import "time"
+import "fmt"
+
+func main() {
+
+
+    /* Here we want to limit our handling of incoming requests
+       We will serve these requests off a channel named requests */
+       
+    requests := make(chan int, 5)
+    for i := 1; i <=5; i++ {
+        requests <- i
+    }
+    close(requests)
+    
+    
+    /* limiter channel will receive a value every 200 milliseconds
+       this is the regulator in our rate limiting scheme */
+       
+    limiter := time.Tick(time.Millisecond * 200)
+    
+    
+    /* here we are blocking on a receive from the limiter channel before serving each request
+       this way we limit ourselves to 1 request every 200 milliseconds */
+       
+    for req := range requests {
+        <-limiter
+        fmt.Println("request", req, time.Now())
+    }
+    
+    
+    /* We may want to allow short bursts of requests in our rate limiting scheme while preserving
+       the overall rate limit, we can accomplish this by buffering our limiter channel
+       This burstyLimiter channel will allow bursts of up to 3 events */
+       
+    burstyLimiter := make(chan time.Time, 3)
+    
+    
+    /* Fill up the channel to represent allowed bursting */
+    for i := 0; i < 3; i++ {
+        burstyLimiter <- time.Now()
+    }
+    
+    /* Every 200 milliseconds we will try to add a new value to burstyLimiter, up to its limit of 3 */
+    go func() {
+        for t := range time.Tick(time.Millisecond * 200) {
+            burstyLimiter <- t
+        }
+    }()
+    
+    
+    /* Now simulate 5 more incomming requests,  */
+    burstyRequests := make(chan int, 5)
+    for i := 1; i <= 5; i++ {
+        burstyRequests <- i
+    }
+    close(burstyRequests)
+    for req := range burstyRequests {
+        <-burstyLimiter
+        fmt.Println("request", req, time.Now())
+    }
+
+}
+=================================================================================
+Running our program we see the first batch of requests handled once
+every ~200 milliseconds as desired.
+
+For the second batch of requests we serve the first 3 immediately
+because of the burstable rate limiting, then serve the remaining 2
+with ~200 milliseconds delays each
+
+
+=================================================================================
+/* atomic-counters.go */
+
+/* Primary mechanism for managing state in Go is by communicating over channels
+   There are few other options for managing state, Here we will look at 
+   using sync/atomic package for atomic counters accessed by multiple goroutines */
+
+package main
+
+import "fmt"
+import "time"
+import "sync/atomic"
+import "runtime"
+
+func main() {
+
+    /* we will use an unsigned integer to represent our counter */
+    var ops uint64 = 0
+    
+    /* we will start 50 goroutines that each increment the counter once a millisecond */
+    /* this is for simulating concurrent updates */
+    for i := 0; i < 50; i++ {
+        go func() {
+            for {
+                atomic.AddUint64(&ops, 1)
+                runtime.Goseched()
+            }
+        }()
+    }
+    
+    /* wait a second to allow some ops to accumulate */
+    time.Sleep(time.Second)
+    
+    /* we extract a copy of the current value into  opsFinal via LoadUnit64 */
+    opsFinal := atomic.LoadUint64(&ops)
+    fmt.Println("ops:", opsFinal)
+}
+=================================================================================
+$ go run atomic-counters.go
+ops: 8250758
+
+Running the program shows that we executed ~8200000 operations
+
+
+=================================================================================
+/* mutexes.go */
+
+/* we saw how to manage simple counter state using atomic operations
+   For more complex state we can use mutex to safely access data accross
+   multiple goroutines */
+
+package main
+
+import (
+    "fmt"
+    "math/rand"
+    "runtime"
+    "sync"
+    "sync/atomic"
+    "time"
+)
+
+func main() {
+
+    /* state is defined as a map  */
+    var state = make(map[int]int)
+    
+    /* this mutex will synchronize access to state */
+    var mutex = &sync.Mutex{}
+    
+    /* ops will be used to count the operations performed on state */
+    var ops int64 = 0
+    
+    /* we start 100 goroutines to repeatedly read from state */
+    for r := 0; r < 100; r++ {
+        go func() {
+            total := 0
+            for {
+                /* random key for each read */
+                key := rand.Intn(5)
+                /* lock the mutex to ensure exclusive acces to state */
+                mutex.Lock()
+                total += state[key]
+                /* unlock the mutex */
+                mutex.Unlock()
+                atomic.AddInt64(&ops, 1)
+                
+                runtime.Gosched()
+            }
+        }()
+    }
+
+    /* we start 10 goroutines to repeatedly write to state */    
+    for w := 0; w < 10; w++ {
+        go func() {
+            for {
+                key := rand.Intn(5)
+                val := rand.Intn(100)
+                /* lock the mutex to ensure exclusive acces to state */
+                mutex.Lock()
+                state[key] = val
+                /* unlock the mutex */
+                mutex.Unlock()
+                atomic.AddInt64(&ops, 1)
+                runtime.Gosched()
+            }
+        }()
+    }
+    
+    /* let the goroutines work for a second */
+    time.Sleep(time.Second)
+    
+    opsFinal := atomic.LoadInt64(&ops)
+    fmt.Println("ops:",opsFinal)
+    
+    mutex.Lock()
+    fmt.Println("state:", state)
+    mutex.Unlock()
+}
+=================================================================================
+$ go run mutexes.go
+ops: 4297418
+state: map[0:47 2:46 3:52 1:7 4:86]
+
+
+
+=================================================================================
+/* stateful-goroutines.go */
+
+/* We previously used explicit locking with mutexes to synchronize access to shared
+state across multiple goroutines, Another option is to use the built-in synchronization
+features of goroutines and channels to acheive the same result */
+
+/* Channel based approach to synchronize shared state across multiple goroutines
+aligns with Go's idea of sharing memory by communicating and having each piece of
+data owend by exactly 1 goroutine */
+
+
+/* In this example state will be owned by a single goroutine
+Other goroutines that want to read or write the state will send messages to the
+owning goroutine, and receive corresponding replies */
+
+package main
+
+import (
+    "fmt"
+    "math/rand"
+    "sync/atomic"
+    "time"
+)
+
+/* readOp and writeOp structs below encapsulate the read and write requests
+and a way for owning goroutine to respond */
+
+type readOp struct {
+    key int
+    resp chan int
+}
+
+type writeOp struct {
+    key int
+    val int
+    resp chan bool
+}
+
+func main() {
+
+    var ops int64 = 0
+
+/* reads and writes channels will be used by other goroutines to issue
+read and write requests respectively */
+
+    reads := make(chan *readOp)
+    writes := make(chan *writeOp)
+
+
+/* Here is the goroutine that owns the state */    
+/* State is a map private to this goroutine,
+this goroutine repeatedly selects on the reads and writes channels,
+responding to requests as they arive */
+
+    go func() {
+        
+        var state = make(map[int]int)
+
+/* response is executed by first performing the requested operation
+and then sending a value on the response channel resp to indicate success */
+        for {
+            select {
+            case read := <-reads:
+                read.resp <- state[read.key]
+            case write := <- writes:
+                state[write.key] = write.val
+                write.resp <- true
+            }
+        }
+        
+    }()
+
+/* This starts 100 goroutines  to issue reads to the state-owning goroutine via
+the reads channel, each read requires constructing a readOp, sending it over the reads channel,
+and receiving the result over the provided resp channel */
+    for r := 0; r < 100; r++ {
+        go func() {
+            for {
+                read := &readOp{
+                    key: rand.Intn(5)
+                    resp: make(chan int)}
+                reads <- read
+                <-read.resp
+                atomic.AddInt64(&ops, 1)
+            }
+        }()
+    }
+
+/* start 10 writes using similar approach as above */    
+    for w := 0; w < 10; w++ {
+        go func() {
+            for {
+                write := &writeOp{
+                    key: rand.Intn(5),
+                    val: rand.Intn(100),
+                    resp: make(chan bool)}
+                writes <- write
+                <-write.resp
+                atomic.AddInt64(&ops, 1)
+            }
+        }()
+    }
+    
+    time.Sleep(time.Second)
+    
+    opsFinal := atomic.LoadInt64(&ops)
+    fmt.Println("ops:", opsFinal)
+}
+=================================================================================
+$ go run stateful-goroutines.go
+ops: 807434
+
+
+
+=================================================================================
+/* sorting.go */
+
+/* Go's sort package implements sorting for built-ins and user-defined types */
+
+package main
+
+import "fmt"
+import "sort"
+
+func main() {
+
+/* Sort methods are specific to the built-in types, here is an example for strings */
+/* Sorting is in-place, so it changes the given slice and doesn't return a new one */
+
+    strs := []string{"c", "a", "b"}
+    sort.Strings(strs)
+    fmt.Println("Strings:", strs)
+
+
+/* Sorting of ints */    
+
+    ints := []int{7, 2, 4}
+    sort.Ints(ints)
+    fmt.Println("Ints: ", ints)
+
+/* We can also use sort to check if a slice is already in sorted order */
+
+    s := sort.IntsAreSorted(ints)
+    fmt.Println("Sorted: ", s)
+
+}
+=================================================================================
+$ go run sorting.go
+Strings: [a b c]
+Ints:    [2 4 7]
+Sorted:  true
+
+
+
+=================================================================================
+/* sorting-by-functions.go */
+
+/* Sometimes we will want to sort a collection by someting other than its natural order */
+/* Example: we might want to sort strings by their length instead of alphabetically */
+
+package main
+
+import "sort"
+import "fmt"
+
+/* In order to sort by a custom function in Go, we need a corresponding type */
+/* here we create a ByLength type that is just an alias for builtin []string type */
+
+type ByLength []string
+
+
+/* We will have to implement sort.Interface - Len, Less, and Swap on our type
+to be able to use the sort package's generic Sort function */
+
+/* Len, and Swap will usually be similar accros types and Less will hold the
+actual custom sorting logic */
+/* In our case we want to sort in order of increasing string length,
+so we use len(s[i]) and len(s[j]) here */
+
+func (s ByLength) Len() int {
+    return len(s)
+}
+
+func (s ByLength) Swap(i, j int) {
+    s[i], s[j] = s[j], s[i]
+}
+
+func (s ByLength) Less(i, j int) bool {
+    return len(s[i]) < len(s[j])
+}
+
+/* We implement our custom sort by casting the original fruits slice to ByLength */
+/* and then use sort.Sort on the typed slice */
+for main() {
+    fruits := []string{"peach", "banana", "kiwi"}
+    sort.Sort(ByLength(fruits))
+    fmt.Println(fruits)
+}
+=================================================================================
+$ go run sorting-by-functions.go
+[kiwi peach banana]
+
+
+
+=================================================================================
+/* panic.go */
+
+/* panic typically means something went unexpectedly wrong */
+/* panic is used to fail fast on errors that shouldn't occur during normal operation */
+
+package main
+
+import "os"
+
+func main() {
+
+    panic("a problem")
+    
+    _, err := os.Create("/tmp/file")
+    if err != nil {
+        panic(err)
+    }
+}
+=================================================================================
+$ go run panic.go
+panic: a problem
+
+
+goroutine 1 [running]:
+main.main()
+        /../panic.go:12 +0x47
+...
+exit status 2
+
+=================================================================================
+/* defer.go */
+
+/* defer is used to ensure that a function call is processed later in a program's
+execution, usually for purpose of cleanup */
+/* defer is often used where ensure and finally would be used in other languages */
+
+package main
+
+import "fmt"
+import "os"
+
+/* function takes file name as string and returns a pointer to File */
+func createFile(p string) *os.File {
+    fmt.Println("creating")
+    f, err := os.Create(p)
+    if err != nil {
+        panic(err)
+    }
+    return f
+}
+
+/* function takes a pointer to File and writes string "data" to it*/
+func writeFile(f *os.File) {
+    fmt.Println("writing")
+    fmt.Fprintln(f,"data")
+}
+
+/* function takes a pointer to File and closes the file handle */
+func closeFile(f *os.File) {
+    fmt.Println("closing")
+    f.Close()
+}
+
+func main() {
+
+    f:= createFile("/tmp/defer.txt")
+    defer closeFile(f)
+    writeFile(f)
+    
+}
+=================================================================================
+$ go run defer.go
+creating
+writing
+closing
+
+
+=================================================================================
+/* collection-functions.go */
+
+/* Go does not support generics, its common to provide collection functions if and
+when they are specifically needed for our program and data types */
+
+/* here we will see some collection functions for slices of strings */
+/* In some places it might be good to inline the collection-manipulating code rather
+than creating and calling a helper function */
+
+package main
+
+import "strings"
+import "fmt"
+
+/* returns the first index of the target string t or -1 if no match is found */
+func Index(vs []string, t string) int {
+    for i, v := range vs {
+        if v == t {
+            return i
+        }
+    }
+    return -1
+}
+
+/* returns true if the target string is in the slice */
+func Include(vs []string, t string) bool {
+    return Index(vs, t) >= 0
+}
+
+/* returns true if one of the target string is in the slice satisfies the predicate f */
+/* takes a slice of strings, a function that returns bool and returns bool */
+func Any(vs []string, f func(string) bool) bool {
+    for _, v := range vs {
+        if f(v) {
+            return false
+        }
+    }
+    return true
+}
+
+/* returns true if all of the strings in the slice satisfy the predicate f */
+func All(vs []string, f func(string) bool) bool {
+    for _, v := range vs {
+        if !f(v) {
+            return false
+        }
+    }
+    return true
+}
+
+/* returns a new slice containing all strings in the slice that satisfy the predicate f */
+func Filter(vs []string, f func(string) bool) []string {
+    vsf := make([]string, 0)
+    for _, v := range vs {
+        if f(v) {
+            vsf = append(vsf, v)
+        }
+    }
+    return vsf
+}
+
+/* returns a new slice containing the results of applying the function f to each string
+in the original slice */
+func Map(vs []string, f func(string) string) []string {
+    vsm := make([]string, len(vs))
+    for i, v := range vs {
+        vsm[i] = f(v)
+    }
+    return vsm
+}
+
+func main() {
+
+    var strs = []string{"peach", "apple", "pear", "plum"}
+    
+    fmt.Println(Index(strs, "pear"))
+    fmt.Println(Include(strs, "grape"))
+    
+    fmt.Println(Any(strs, func(v string) bool {
+        return strings.HasPrefix(v, "p")
+    }))
+    
+    fmt.Println(All(strs, func(v string) bool {
+        return strings.HasPrefix(v, "p")
+    }))
+    
+    fmt.Println(Filter(strs, func(v string) bool {
+        return strings.HasPrefix(v, "e")
+    }))
+    
+    fmt.Println(Map(strs, strings.ToUpper))
+}
+=================================================================================
+$ go run collection-functions.go
+2
+false
+true
+false
+[peach apple pear]
+[PEACH APPLE PEAR PLUM]
+
+
+
+=================================================================================
+/* string-functions.go */
+
+/* standard library's strings package provides many useful string-related functions
+here are some examples to give you a sense of the package */
+
+package main
+
+import s "strings"
+import "fmt"
+
+var p = fmt.Println
+
+func main() {
+
+    p("Contains:  ", s.Contains("test", "es"))
+    p("Count:     ", s.Count("test", "t"))
+    p("HasPrefix: ", s.HasPrefix("test", "te"))
+    p("HasSuffix: ", s.HasSuffix("test", "st"))
+    p("Index:     ", s.Index("test", "e"))
+    p("Join:      ", s.Join([]string{"a", "b"}, "-"))
+    p("Repeat:    ", s.Repeat("a", 5))
+    p("Replace:   ", s.Replace("foo", "o", "0", -1))
+    p("Replace:   ", s.Replace("foo", "o", "0", 1))
+    p("Split:     ", s.Split("a-b-c-d-e", "-"))
+    p("ToLower:   ", s.ToLower("TEST"))
+    p("ToUpper:   ", s.ToUpper("test"))
+    p("Len: ", len("hello"))
+    p("Char:", "hello"[1])
+}
+=================================================================================
+$ go run string-functions.go
+Contains:   true
+Count:      2
+HasPrefix:  true
+HasSuffix:  true
+Index:      1
+Join:       a-b
+Repeat:     aaaaa
+Replace:    f00
+Replace:    f0o
+Split:      [a b c d e]
+toLower:    test
+ToUpper:    TEST
+Len:  5
+Char: 101
+=================================================================================
+/* string-formatting.go */
+
+package main
+
+import "fmt"
+import "os"
+
+type point struct {
+    x, y int
+}
+
+func main() {
+
+    p := point{1, 2}
+    
+    /* prints an instance of our point struct */
+    fmt.Printf("%v\n", p)
+    
+    /* %+v variant will include our struct's field names */
+    fmt.Printf("%+v\n", p)
+    
+    /* #v variant prints a Go syntax representation of the value */
+    /* i.e. the source code snippet */
+    fmt.Printf("%#v\n", p)
+    
+    /* %T prints the type of a value */
+    fmt.Printf("%T\n", p)
+    
+    /* %t is used for formatting boolean */
+    fmt.Printf("%t\n", true)
+    
+    /* %d is for standard base-10 formatting of integers */
+    fmt.Printf("%d\n", 123)
+    
+    /* %b is for binary representation of integers */
+    fmt.Printf("%b\n", 14)
+    
+    /* %c prints the character corresponding to the given integer */
+    fmt.Printf("%c\n", 33)
+    
+    /* %x prints hex encoding */
+    fmt.Printf("%x\n", 456)
+    
+    /* %f prints basic decimal format of floats */
+    fmt.Printf("%f\n", 78.9)
+    
+    /* %e and %E format the float in scientific notation */
+    fmt.Printf("%e\n", 123400000.0)
+    fmt.Printf("%E\n", 123400000.0)
+    
+    /* %s is used for basic string printing */
+    fmt.Printf("%s\n", "\"string\"")
+    
+    /* %q is used to pring double-quoted strings as in Go source */
+    fmt.Printf("%q\n", "\"string\"")
+    
+    /* %p is used to print a representation of a pointer */
+    fmt.Printf("%p\n", &p)
+    
+    /* when formatting numbers we will often want to control the width
+    and precision of the resulting figure, to specify the width of an integer,
+    use a number after the % in the verb.
+    By default the result will be right-justified and padded with spaces */
+    
+    fmt.Printf("|%6d|%6d|\n", 12, 345)
+    
+    /* we can also specify the width of float in similar way */
+    fmt.Printf("|%6.2f|%6.2f|\n", 1.2, 3.45)
+    
+    /* - flag is used to left-justify the width */
+    fmt.Printf("|%-6.2f|%-6.2f|\n", 1.2, 3.45)
+    
+    /* we can also format strings, especially to ensure that
+    the strings align in a table-like output */
+    
+    fmt.Printf("|%-5s|%-5s|\n", "Sai", "Sanvi")
+    
+    /* Printf prints the formatted string to os.Stdout */
+    /* Sprintf formats and returns a string without printing it anywhere */
+    
+    s := fmt.Sprintf("a %s", "string")
+    fmt.Println(s)
+    
+    /* we can format and print to io.Writers other than os.Stdout by using Fprintf */
+    fmt.Fprintf(os.Stderr, "an %s\n", "error")
+}
+=================================================================================
+{1 2}
+{x:1 y:2}
+main.point{x:1, y:2}
+main.point
+true
+123
+1110
+!
+1c8
+78.900000
+1.234000e+08
+1.234000E+08
+"string"
+"\"string\""
+0xc20800a200
+|    12|   345|
+|  1.20|  3.45|
+|1.20  |3.45  |
+|Sai  |Sanvi|
+a string
+an error
+
+=================================================================================
+/* regular-expressions.go */
+
+package main
+
+import "bytes"
+import "fmt"
+import "regexp"
+
+func main() {
+
+    /* this tests if the pattern matches a string */
+    /* match returned by regexp.MatchString here is a boolean */
+    
+    match, _ := regexp.MatchString("p([a-z]+)ch", "peach")
+    fmt.Println(match)
+    
+    /* above we used a string pattern directly */
+    /* we should Compile a Regexp struct for optimal regexp tasks */
+    
+    r, _ := regexp.Compile("p[a-z]+ch")
+    
+    /* there are many methods available for use on the Regexp struct */
+    fmt.Println(r.MatchString("peach"))
+    fmt.Println(r.FindString("peach punch"))
+    fmt.Println(r.FindStringIndex("peach punch"))
+    fmt.Println(r.FindStringSubmatch("peach punch"))
+    fmt.Println(r.FindStringSubmatchIndex("peach punch"))
+    
+    /* All variants of these functions apply to all matches in the input,
+    not just the first */
+    fmt.Println(r.FindAllString("peach punch pinch", -1))
+    fmt.Println(r.FindAllStringSubmatchIndex("peach punch pinch", -1))
+    
+    /* Providing a non-negative integer as the second argument to
+    these functions will limit the number of matches */
+    fmt.Println(r.FindAllString("peach punch pinch", 2))
+    
+    /* we can also provide []byte arguments and drop String from the function name */
+    fmt.Println(r.Match([]byte("peach")))
+    
+    /* when creating constants with regular expressions 
+    we should use MustCompile variation of Compile */
+    
+    r = regexp.MustCompile("p([a-z]+)ch")
+    fmt.Println(r)
+    
+    fmt.Println(r.ReplaceAllString("a peach", "<fruit>"))
+    
+    /* The Func variant allows us to transform matched text with a given function */
+    in := []byte("a peach")
+    out := r.ReplaceAllFunc(in, bytes.ToUpper)
+    fmt.Println(string(out))
+    /* This prints "a PEACH" */
+}
+=================================================================================
+$ go run regular-expressions.go
+true
+true
+peach
+[0 5]
+[peach]
+[0 5]
+[peach punch pinch]
+[[0 5] [6 11] [12 17]]
+[peach punch]
+true
+p([a-z]+)ch
+a <fruit>
+a PEACH
+
+=================================================================================
+/* json.go */
+
+/* Go offers built-in support for JSON encoding and decoding,
+including to and from built-in and custom data */
+
+package main
+
+import "encoding/json"
+import "fmt"
+import "os"
+
+/* We will use the below two structs to demonstrate
+encoding and decoding of custom types below */
+
+type Response1 struct {
+    Page int
+    Fruits []string
+}
+
+type Response2 struct {
+    Page int `json:"page"`
+    Fruits []string `json:"fruits"`
+}
+
+func main() {
+
+    /* encoding boolean type to JSON string */
+    bolB, _ := json.Marshal(true)
+    fmt.Println(string(bolB))
+    
+    /* encoding few other basic types to JSON string */
+    intB, _ := json.Marshal(1)
+    fmt.Println(string(intB))
+    
+    fltB, _ := json.Marshal(2.34)
+    fmt.Println(string(fltB))
+    
+    strB, _ := json.Marshal("gopher")
+    fmt.Println(string(strB))
+    
+    /* slices and maps encode to JSON arrays and objects */
+    slcD := []string{"apple", "peach", "pear"}
+    slcB, _ := json.Marshal(slcD)
+    fmt.Println(string(slcB))
+    
+    mapD := map[string]int{"apple": 5, "lettuce": 7}
+    mapB, _ := json.Marshal(mapD)
+    fmt.Println(string(mapB))
+    
+    /* JSON package can automatically encode our custom data types */
+    /* It will include exported fields in the encoded output and 
+    use those names as JSON keys by default */
+    
+    res1D := &Response1{
+        Page: 1,
+        Fruits: []string{"apple", "peach", "pear"}}
+    res1B, _ := json.Marshal(res1D)
+    fmt.Println(string(res1B))
+    
+    /* We can use tags on struct field declarations to customize the
+    encoded JSON key names as in Response2 struct */
+    
+    res2D := &Response2{
+        Page: 1,
+        Fruits: []string{"apple", "peach", "pear"}}
+    res2B, _ := json.Marshal(res2D)
+    fmt.Println(string(res2B))
+    
+    /* lets look at decoding JSON data in to Go values */
+    
+    /* Here is an example for a generic data structure */
+    byt := []byte(`{"num":6.13,"strs":["a","b"]}`)
+    
+    /* this map[string]interface{} will hold a map of 
+    strings to arbitrary data types */
+    /* we need to provide a variable where the JSON package
+    can put the decoded data */
+    
+    var dat map[string]interface{}
+    
+    /* actual decoding */
+    if err := json.Unmarshal(byt, &dat); err != nil {
+        panic(err)
+    }
+    fmt.Println(dat)
+    
+    /* to use the values in the decoded map
+    we will need to cast them to their appropriate type */
+    num := dat["num"].(float64)
+    fmt.Println(num)
+    
+    /* accessing nested data requires a series of casts */
+    strs := dat["strs"].([]interface{})
+    str1 := strs[0].(string)
+    fmt.Println(str1)
+    
+    /* we can also decode JSON into custom data types */
+    /* this allows us to add additional type-safety to
+    our program and eleminating the need for type assertions
+    when accessing the decoded data */
+    
+    str := `{"page": 1, "fruits": ["apple", "peach"]}`
+    res := &Response2{}
+    json.Unmarshal([]byte(str), &res)
+    fmt.Println(res)
+    fmt.Println(res.Fruits[0])
+    
+    
+    /* till now we always used bytes and strings as intermediates between
+    the data and JSON representation on standard out */
+    /* we can also stream JSON encodings directly to os.Writers like
+    os.Stdout or even HTTP response bodies */
+    
+    enc := json.NewEncoder(os.Stdout)
+    d := map[string]int{"apple": 5, "letuce": 7}
+    enc.Encode(d)
+    
+}
+=================================================================================
+$ go run json.go
+true
+1
+2.34
+"gopher"
+["apple","peach","pear"]
+{"apple":5,"lettuce":7}
+{"Page":1,"Fruits":["apple","peach","pear"]}
+{"page":1,"fruits":["apple","peach","pear"]}
+map[num:6.13 strs:[a b]]
+6.13
+a
+&{1 [apple peach]}
+apple
+{"apple":5,"letuce":7}
+
+FURTHER READING @ http://blog.golang.org/json-and-go
+
+=================================================================================
+/* time.go */
+
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+
+    p := fmt.Println
+    
+    now := time.Now()
+    p(now)
+    
+    then := time.Date(2009, 11, 17, 20, 34, 58, 651387237, time.UTC)
+    p(then)
+    
+    p(then.Year())
+    p(then.Month())
+    p(then.Day())
+    p(then.Hour())
+    p(then.Minute())
+    p(then.Second())
+    p(then.Nanosecond())
+    p(then.Location())
+    
+    p(then.Weekday())
+    
+    p(then.Before(now))
+    p(then.After(now))
+    p(then.Equal(now))
+    
+    diff := now.Sub(then)
+    p(diff)
+    
+    p(diff.Hours())
+    p(diff.Minutes())
+    p(diff.Seconds())
+    p(diff.Nanoseconds()
+    
+    p(then.Add(diff))
+    p(then.Add(-diff))
+    
+}
+=================================================================================
+$ go run time.go
+
+
+
+=================================================================================
+/* epoch.go */
+
+/* A common requirement in programs is getting the number of seconds, milliseconds,
+or nanoseconds since the Unix epoch */
+
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+
+    /* use time.Now with Unix or UnixNano to get elapsed
+    time since the Unix epoch in seconds or nanoseconds */
+    
+    now := time.Now()
+    secs := now.Unix()
+    nanos := now.UnixNano()
+    fmt.Println(now)
+    
+    /* There is no UnixMillis, so to get the milliseconds
+    since epoch we will have to manually divide from nanoseconds */
+    millis := nanos / 1000000
+    fmt.Println(secs)
+    fmt.Println(millis)
+    fmt.Println(nanos)
+    
+    /* we can also convert integer seconds or nanoseconds since
+    the epoch time in to the coresponding time */
+    
+    fmt.Println(time.Unix(secs, 0))
+    fmt.Println(time.Unix(0, nanos))
+    
+}
+=================================================================================
+$ go run epoch.go
+2015-05-04 11:56:54.387802 -0400 EDT
+1430755014
+1430755014387
+1430755014387802000
+2015-05-04 11:56:54 -0400 EDT
+2015-05-04 11:56:54.387802 -0400 EDT
+
+=================================================================================
+/* time-formatting-parsing.go */
+
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+
+    p := fmt.Println
+    
+    /* Example of formatting time according to RFC3339 */
+    t := time.Now()
+    p(t.Format(time.RFC3339))
+    
+    /* Time parsing uses the same layout values as Format */
+    t1, e := time.Parse( time.RFC3339, "2012-11-01T22:08:41+00:00")
+    p(t1)
+    
+    /* Format and Parse use example-based layouts */
+    p(t.Format("3:04PM"))
+    p(t.Format("Mon Jan _2 15:04:05 2006"))
+    p(t.Format("2006-01-02T15:04:05.999999-07:00"))
+    form := "3 04 PM"
+    t2, e := time.Parse(form, "8 41 PM")
+    p(t2)
+    
+    /* For purely numeric representations we can also
+    use standard string formatting with the extracted
+    components of the time value */
+    
+    fmt.Printf("%d-%02d-%02dT%02d:%02d:%02d-00:00\n",
+        t.Year(), t.Month(), t.Day(),
+        t.Hour(), t.Minute(), t.Second())
+        
+    
+    /* Parse will return an error on malformed inputs
+       explaining the parsing problem */
+    ansic := "Mon Jan _2 15:04:05 2006"
+    _, e = time.Parse(ansic, "8:41PM")
+    p(e)
+    
+}
+=================================================================================
+$ go run time-formatting-parsing.go
+2015-05-04T12:55:45-04:00
+2012-11-01 22:08:41 +0000 +0000
+12:55PM
+Mon May  4 12:55:45 2015
+2015-05-04T12:55:45.471942-04:00
+0000-01-01 20:41:00 +0000 UTC
+2015-05-04T12:55:45-00:00
+parsing time "8:41PM" as "Mon Jan _2 15:04:05 2006": cannot parse "8:41PM" as "Mon"
+
+=================================================================================
+/* random-numbers.go */
+
+/* Go's math/rand package provides pseudo-random number generation */
+
+package main
+
+import "fmt"
+import "math/rand"
+
+func main() {
+
+    /* rand.Intn returns a random integer */
+    fmt.Print(rand.Intn(100), ",")
+    fmt.Print(rand.Intn(100))
+    fmt.Println()
+    
+    /* rand.Float64 returns a random float64 in the range of 0.0 to 1.0 */
+    fmt.Println(rand.Float64())
+    
+    /* rand.Float64 used to generate random numbers in other ranges */
+    fmt.Print((rand.Float64()*5)+5, ",")
+    fmt.Print((rand.Float64() * 5) + 5)
+    fmt.Println()
+    
+    /* to make the pseudo random generator deterministic,
+    we should give it a well known seed */
+    s1 := rand.NewSource(42)
+    r1 := rand.New(s1)
+    
+    /* call the resulting rand.Rand similar
+    to functions on the rand package */
+    
+    fmt.Print(r1.Intn(100), ",")
+    fmt.Print(r1.Intn(100))
+    fmt.Println()
+    
+    /* seeding a source with the same number produces
+       the same sequence of random numbers */
+    s2 := rand.NewSource(42)
+    r2 := rand.New(s2)
+    fmt.Print(r2.Intn(100), ",")
+    fmt.Print(r2.Intn(100))
+    fmt.Println()
+
+}
+=================================================================================
+$ go run random-numbers.go
+81,87
+0.6645600532184904
+7.1885709359349015,7.123187485356329
+5,87
+5,87
+
+=================================================================================
+/* number-parsing.go */
+
+/* Parsing numbers from string is a common task in many programs; here is how to do it in Go */
+
+package main
+
+/* built-in package strconv provides number parsing */
+import "strconv"
+import "fmt"
+
+func main() {
+
+    /* 64 here tells how many bits of precision to parse */
+    f, _ := strconv.ParseFloat("1.234", 64)
+    fmt.Println(f)
+    
+    /* 0 here means infer the base from the string
+       64 means the result should fit in 64 bits */
+    i, _ := strconv.ParseInt("123", 0, 64)
+    fmt.Println(i)
+    
+    /* ParseInt can recognise hex-formatted numbers */
+    d, _ := strconv.ParseInt("0x1c8", 0, 64)
+    fmt.Println(d)
+    
+    /* ParseUint method */
+    u, _ := strconv.ParseUint("789", 0, 64)
+    fmt.Println(u)
+    
+    /* Atoi is a convenience function for basic base-10 int parsing */
+    k, _ := strconv.Atoi("135")
+    fmt.Println(k)
+    
+    /* Parse functions return an error on bad input */
+    _, e := strconv.Atoi("wat")
+    fmt.Println(e)
+    
+}
+=================================================================================
+$ go run number-parsing.go
+1.234
+123
+456
+789
+135
+strconv.ParseInt: parsing "wat": invalid syntax
+
+=================================================================================
+/* url-parsing.go */
+
+package main
+
+import "fmt"
+import "net"
+import "net/url"
+
+func main() {
+
+    s := "postgres://sujai:mypassword@host.com:5432/path?k=v#f"
+    
+    u, err := url.Parse(s)
+    if err != nil {
+        panic(err)
+    }
+    
+    fmt.Println(u.Scheme)
+    fmt.Println(u.User)
+    fmt.Println(u.User.Username())
+    p, _ := u.User.Password()
+    fmt.Println(p)
+    
+    fmt.Println(u.Host)
+    host, port, _ := net.SplitHostPort(u.Host)
+    fmt.Println(host)
+    fmt.Println(port)
+    
+    fmt.Println(u.Path)
+    fmt.Println(u.Fragment)
+    
+    fmt.Println(u.RawQuery)
+    m, _ := url.ParseQuery(u.RawQuery)
+    fmt.Println(m)
+    fmt.Println(m["k"][0])
+
+}
+=================================================================================
+$ go run url-parsing.go
+postgres
+sujai:mypassword
+sujai
+mypassword
+host.com:5432
+host.com
+5432
+/path
+f
+k=v
+map[k:[v]]
+v
+
+=================================================================================
+/* sha1-hashes.go */
+
+/* SHA1 hashes are used to compute short identifiers for binary or text blobs */
+/* This example is about computing SHA1 hashes in Go */
+
+package main
+
+/* Go implements several hash functions in various crypto/ packages */
+import "crypto/sha1"
+import "fmt"
+
+func main() {
+
+    /* The pattern for generating a hash is sha1.New(), sha1.Write(bytes),
+       then sha1.Sum([]bytes{}), Here we start with a new hash */
+    s := "sha1 this string"
+    h := sha1.New()
+    
+    /* sha1.Write expects bytes, so we are using []byte(s)
+       to coerce the string in to bytes */
+    h.Write([]byte(s))
+    
+    /* sha1.Sum gets the hash result as a byte slice
+       the argument to sum can be used to append to an
+       existing byte slice, its usually not needed */
+    bs := h.Sum(nil)
+    
+    fmt.Println(s)
+    /* here we use the %x format verb to convert a
+       hash result to a hex string */
+    fmt.Printf("%x\n", bs)
+    
+}
+/* We can compute other hashes in similar way
+to compute MD5 hashes, we can import crypto/md5
+and use md5.New() */
+=================================================================================
+$ go run sha1-hashes.go
+sha1 this string
+cf23df2207d99a74fbe169e3eba035e633b65d94
+
+=================================================================================
+/* base64-encoding.go */
+
+package main
+
+/* this syntax imports encoding/base64 package with b64 name */
+import b64 "encoding/base64"
+import "fmt"
+
+func main() {
+
+    /* string we will encode/decode */
+    data := "abc123!?$*&()'-=@~"
+    
+    /* Go supports both standard and URL-compatible base64
+       Here’s how to encode using the standard encoder. 
+       The encoder requires a []byte so we cast our string to that type. */
+    sEnc := b64.StdEncoding.EncodeToString([]byte(data))
+    fmt.Println(sEnc)
+    
+    /* Decoding may return an error, which we can check if
+       we don’t already know the input to be well-formed */
+    sDec, _ := b64.StdEncoding.DecodeString(sEnc)
+    fmt.Println(string(sDec))
+    fmt.Println()
+    
+    /* this encodes/decodes using a URL-compatible base64 format */
+    uEnc := b64.URLEncoding.EncodeToString([]byte(data))
+    fmt.Println(uEnc)
+    uDec, _ := b64.URLEncoding.DecodeString(uEnc)
+    fmt.Println(string(uDec))
+    
+}
+=================================================================================
+$ go run base64-encoding.go
+YWJjMTIzIT8kKiYoKSctPUB+
+abc123!?$*&()'-=@~
+
+YWJjMTIzIT8kKiYoKSctPUB-
+abc123!?$*&()'-=@~
+
+
+=================================================================================
+/* reading-files.go */
+
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "io"
+    "io/ioutil"
+    "os"
+)
+
+/* helper function to streamline our error checks */
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+
+func main() {
+
+    /* basic file reading,
+       slurping the entire files contents in to memory */
+    dat, err := ioutil.ReadFile("/tmp/dat")
+    check(err)
+    fmt.Print(string(dat))
+    
+    /* We will often want more control over how and what parts of a file are read
+       For these tasks we should start by Opening a file to obtain an os.File value */
+    f, err := os.Open("/tmp/dat")
+    check(err)
+    
+    /* Read some bytes from the begining of the file */
+    b1 := make([]byte, 5)
+    /* n1 here gets the number of bytes read */
+    n1, err := f.Read(b1)
+    check(err)
+    fmt.Printf("%d bytes: %s\n", n1, string(b1))
+    
+    /* We can also Seek to a known location in the file and Read from there */
+    o2, err := f.Seek(6, 0)
+    check(err)
+    b2 := make([]byte, 2)
+    n2, err := f.Read(b2)
+    check(err)
+    fmt.Printf("%d bytes @ %d: %s\n", n2, o2, string(b2))
+    
+    /* The io package provides some functions that may be helpful for file reading */
+    /* Here's how to implement reads like above with ReadAlLeast function from io package */
+    o3, err := f.Seek(6, 0)
+    check(err)
+    b3 := make([]byte, 2)
+    n3, err := io.ReadAtLeast(f, b3, 2)
+    check(err)
+    fmt.Printf("%d bytes @ %d: %s\n", n3, o3, string(b3))
+    
+    /* There's no built-in rewind, but seek(0,0) accomplishes that */
+    _, err = f.Seek(0,0)
+    check(err)
+    
+    /* bufio package implements a buffered reader that is useful for its efficiency
+       with many small reads and because of the additional reading methods it provides */
+    r4 := bufio.NewReader(f)
+    b4, err := r4.Peek(5)
+    check(err)
+    fmt.Printf("5 bytes: %s\n", string(b4))
+    
+    /* Close the file after we are done with reading or writing */
+    /* Closing can also be done with defer immediately after Opening */
+    f.Close()
+    
+}
+=================================================================================
+$ echo "hello" > /tmp/dat
+$ echo "go" >> /tmp/dat
+$ go run reading-files.go
+hello
+go
+5 bytes: hello
+2 bytes @ 6: go
+2 bytes @ 6: go
+5 bytes: hello
+
+=================================================================================
+/* writing-files.go */
+
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "io/ioutil"
+    "os"
+)
+
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+func main() {
+
+    /* dump a string or bytes in to a file */
+    d1 := []byte("hello\ngo\n")
+    err := ioutil.WriteFile("/tmp/dat1", d1, 0644)
+    check(err)
+    
+    /* we should open a file for writing for more granular writing */
+    f, err := os.Create("/tmp/dat2")
+    check(err)
+    /* defer the close immediately after opening a file */
+    defer f.Close()
+    
+    /* writing byte slice to file */
+    d2 := []byte{115, 111, 109, 101, 10}
+    n2, err := f.Write(d2)
+    check(err)
+    fmt.Printf("wrote %d bytes\n", n2)
+    
+    /* WriteString function to write string */
+    n3, err := f.WriteString("writes\n")
+    fmt.Printf("wrote %d bytes\n", n3)
+    
+    /* use Sync function to flush writes to storage */
+    f.Sync()
+    
+    /* buffered writer from bufio package */
+    w := bufio.NewWriter(f)
+    n4, err := w.WriteString("buffered\n")
+    fmt.Printf("wrote %d bytes\n", n4)
+    
+    /* Flush all buffered operations to the underlying writer */
+    w.Flush()
+    
+}
+=================================================================================
+$ go run writing-files.go
+wrote 5 bytes
+wrote 7 bytes
+wrote 9 bytes
+$ cat /tmp/dat1
+hello
+go
+$ cat /tmp/dat2
+some
+writes
+buffered
+
+=================================================================================
+/* line-filters.go */
+
+/* line-filter is a common type of program that reads input on stdin,
+processes it, and then prints some derived result to stdout */
+
+/* grep and sed are common line filters */
+
+
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "strings"
+)
+
+func main() {
+
+    /* wrapping the unbuffered os.Stdin with a buffered scanner */
+    /* this enables us to use Scan method to scan the next token */
+    /* by default token is the next line in the scanner */
+    scanner := bufio.NewScanner(os.Stdin)
+    
+    for scanner.Scan() {
+        /* Text returns the current token, i.e. current line from input */
+        ucl := strings.ToUpper(scanner.Text())
+        /* write out the uppercased line */
+        fmt.Println(ucl)
+    }
+    
+    /* Check for errors during Scan */
+    if err := scanner.Err(); err != nil {
+        fmt.Fprintln(os.Stderr, "error:", err)
+        os.Exit(1)
+    }
+    
+}
+=================================================================================
+$ echo 'hello' > /tmp/lines
+$ echo 'filter' >> /tmp/lines
+$ cat /tmp/lines | go run line-filters.go
+HELLO
+FILTER
+
+=================================================================================
+/* command-line-arguments.go */
+
+package main
+
+import "os"
+import "fmt"
+
+func main() {
+
+    /* os.Args provides access to raw command-line arguments */
+    /* First value in this slice is the path to the program itself */
+    /* os.Args[1:] holds the arguments to the program */
+    argsWithProg := os.Args
+    argsWithoutProg := os.Args[1:]
+    arg := os.Args[3]
+    
+    fmt.Println(argsWithProg)
+    fmt.Println(argsWithoutProg)
+    fmt.Println(arg)
+
+}
+=================================================================================
+$ go build command-line-arguments.go
+$ ./command-line-arguments one two three four
+[./command-line-arguments one two three four]
+[one two three four]
+three
+
+=================================================================================
+/* command-line-flags.go */
+
+/* command-line flags are a common way to specify options to programs */
+/* Go provides a flag package that supports basic command-line flag parsing */
+
+package main
+
+import "flag"
+import "fmt"
+
+func main() {
+
+    /* basic flag declerations are available for string, integer, and boolean options */
+    
+    wordPtr := flag.String("word", "foo", "a string")
+    
+    numbPtr := flag.Int("numb", 42, "an int")
+    
+    boolPtr := flag.Bool("fork", false, "a bool")
+    
+    var svar string
+    flag.StringVar(&svar, "svar", "bar", "a string var")
+    
+    /* Once the flags are declared, call flag.Parse() to execute the command-line parsing */
+    flag.Parse()
+    
+    /* here we will dump the parsed options and
+    any trailing positional arguments */
+    
+    fmt.Println("word:", *wordPtr)
+    fmt.Println("numb:", *numbPtr)
+    fmt.Println("fork:", *boolPtr)
+    fmt.Println("svar:", svar)
+    fmt.Println("tail:", flag.Args())
+
+}
+=================================================================================
+$ go build command-line-flags.go
+$ ./command-line-flags 
+word: foo
+numb: 42
+fork: false
+svar: bar
+tail: []
+$ ./command-line-flags -word=opt -numb=8 -fork -svar=flag
+word: opt
+numb: 8
+fork: true
+svar: flag
+tail: []
+$ ./command-line-flags -word=opt
+word: opt
+numb: 42
+fork: false
+svar: bar
+tail: []
+$ ./command-line-flags -word=opt a1 a2 a3
+word: opt
+numb: 42
+fork: false
+svar: bar
+tail: [a1 a2 a3]
+$ ./command-line-flags -word=opt a1 a2 a3 -numb=7
+word: opt
+numb: 42
+fork: false
+svar: bar
+tail: [a1 a2 a3 -numb=7]
+$ ./command-line-flags -h
+Usage of ./command-line-flags:
+  -fork=false: a bool
+  -numb=42: an int
+  -svar="bar": a string var
+  -word="foo": a string
+$ ./command-line-flags -wat
+flag provided but not defined: -wat
+Usage of ./command-line-flags:
+  -fork=false: a bool
+  -numb=42: an int
+  -svar="bar": a string var
+  -word="foo": a string
+
+=================================================================================
+/* environmant-variables.go */
+package main
+
+import "os"
+import "strings"
+import "fmt"
+
+func main() {
+
+    os.Setenv("FOO", "1")
+    fmt.Println("FOO:", os.Getenv("FOO"))
+    fmt.Println("BAR:", os.Getenv("BAR"))
+    
+    fmt.Println()
+    for _, e := range os.Environ() {
+        pair := strings.Split(e, "=")
+        fmt.Println(pair[0])
+    }
+}
+=================================================================================
+$ go run environment-variables.go
+FOO: 1
+BAR: 
+
+XDG_VTNR
+XDG_SESSION_ID
+SSH_AGENT_PID
+HOSTNAME
+IMSETTINGS_INTEGRATE_DESKTOP
+M2
+...
+
+=================================================================================
+/* spawning-processes.go */
+
+/* Sometimes we might need to spawn other processes from our program */
+
+package main
+
+import "fmt"
+import "io/ioutil"
+import "os/exec"
+
+func main() {
+
+    /* simple date command that takes no arguments or input */
+    /* exec.Command helper creates an object to represent the external process */
+    dateCmd := exec.Command("date")
+    
+    /*.Output is another helper that handles running a command,
+    waiting for it to finish, and collecting its output */
+    dateOut, err := dateCmd.Output()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("> date")
+    fmt.Println(string(dateOut))
+    
+    /* bit more complex case where we pipe data to the external process on its stdin */
+    grepCmd := exec.Command("grep", "hello")
+    
+    /* here we explicitly grab input/output pipes of the external process object,
+       start the process, write some input to it, read the resulting output,
+       and finally wait for the process to exit */
+    grepIn, _ := grepCmd.StdinPipe()
+    grepOut, _ := grepCmd.StdoutPipe()
+    grepCmd.Start()
+    grepIn.Write([]byte("hello grep\ngoodbye grep"))
+    grepIn.Close()
+    grepBytes, _ := ioutil.ReadAll(grepOut)
+    grepCmd.Wait()
+    fmt.Println("> grep hello")
+    fmt.Println(string(grepBytes))
+/* we ommited error checks above, but we could use the usual if err != nil pattern
+   for all of them, also we only collected the StdoutPipe results, but you could
+   collect the StderrPipe in exactly the same way */
+   
+   
+   /* we have to provide command and arguments as array to the external process */
+   /* we can use bash's -c option if we want to pass in our
+      command and argument in one single-line string */
+   lsCmd := exec.Command("bash", "-c", "ls -a -l -h")
+   lsOut, err := lsCmd.Output()
+   if err != nil {
+       panic(err)
+   }
+   fmt.Println("> ls -a -l -h")
+   fmt.Println(string(lsOut))
+
+}
+=================================================================================
+$ go run spawning-processes.go
+> date
+Tue  5 May 08:54:29 EDT 2015
+
+> grep hello
+hello grep
+
+> ls -a -l -h
+total 2.1M
+drwxrwxr-x.  3 vagrant vagrant 4.0K May  5 08:53 .
+drwx------. 31 vagrant vagrant 4.0K May  5 08:18 ..
+...
+
+
+=================================================================================
+/* execing-processes.go */
+
+/* we looked at spawning external processes, sometimes we also want to completely
+replace the current Go process with another process, we can use Go's implementation
+of the clasic exec function to do this */
+
+package main
+
+import "syscall"
+import "os"
+import "os/exec"
+
+func main() {
+
+/* Go requires an absolute path to the binary we want to execute,
+so we will use exec.LookPath to find the path to ls */
+    binary, lookErr := exec.LookPath("ls")
+    if lookErr != nil {
+        panic(lookErr)
+    }
+
+/* Exec requires arguments in slice form with first argument as the program name */
+    args := []string{"ls", "-a", "-l", "-h"}
+
+/* Exec also requires a set of environment variables to use,
+   here we provide our current environment */
+    env := os.Environ()
+
+/* Here's the actual syscall.Exec call, if successful our go program
+   will end here and be replaced by the /bin/ls -a -l -h process */
+/* we get a return value only if there is an error */
+    execErr := syscall.Exec(binary, args, env)
+    if execErr != nil {
+        panic(execErr)
+    }
+
+}
+=================================================================================
+$ go run execing-processes.go
+total 2.1M
+drwxrwxr-x.  3 vagrant vagrant 4.0K May  5 09:07 .
+drwx------. 31 vagrant vagrant 4.0K May  5 08:18 ..
+...
+
+Note:
+Go does not offer a classic Unix fork function.
+Usually this isn’t an issue though, since starting goroutines, spawning processes,
+and exec’ing processes covers most use cases for fork.
+
+=================================================================================
+/* signals.go */
+
+/* we will sometimes want to intelligently handle Unix signals in our program
+i.e. we might want a server to gracefully shutdown when it receives a SIGTERM */
+
+/* this example looks at handling signals in Go with channels */
+
+package main
+
+import "fmt"
+import "os"
+import "os/signal"
+import "syscall"
+
+func main() {
+
+/* Go signal notification works by sending os.Signal values on a channel */
+/* here we create a channel to receive these notifications, and we also
+   create another channel to notify us when the program can exit */
+    sigs := make(chan os.Signal, 1)
+    done := make(chan bool, 1)
+
+/* signal.Notify registers the given channel to receive notifications
+   of the specified signals */
+    signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+    
+/* this goroutine executes a blocking receive for signals
+   when it gets the signal, it will print it out and
+   notify the program that it can finish */
+    go func() {
+        sig := <-sigs
+        fmt.Println()
+        fmt.Println(sig)
+        done <- true
+    }()
+
+/* the program will wait here until it gets the expected signal */    
+    fmt.Println("awaiting signal")
+    <-done
+    fmt.Println("exiting")
+    
+}
+=================================================================================
+$ go run signals.go
+awaiting signal
+^C
+interrupt
+exiting
+
+
+=================================================================================
+/* exit.go */
+
+/* Use os.Exit to immediately exit the program with a given status */
+
+package main
+
+import "fmr"
+import "os"
+
+func main() {
+
+/* defer will not be run when using os.Exit, so the fmt.Println
+   will never be called in this case */
+    defer fmt.Println("!!!")
+    
+    os.Exit(3)
+
+}
+=================================================================================
+$ go run exit.go
+exit status 3
+
+or if we build the program
+$ go build exit.go
+$ ./exit
+$ echo $?
+3
+=================================================================================
