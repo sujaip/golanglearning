@@ -447,3 +447,171 @@ Sujai has a total of 10 songs
 ---------------
 Chapter 3 Types
 ---------------
+
+Basic Types
+===========
+
+bool, string and numeric types are the basic types in Go
+
+Numeric Types:
+
+uint - either 32 or 64 bits
+int - same as uint
+
+uintptr - unsigned integer to store pointer value
+
+uint8 and int8 - (0 to 255) and (-128 to 127)
+uint16 and int16 - (0 to 65535) and (-32768 to 32767)
+uint32 and int32 - (0 to 4294967295) and (-2147483648 to 2147483647)
+uint64 and int64 - signed and unsigned 64 bit integers
+
+float32 - set of 32 bit floating point numbers
+float64 - set of 64 bit floating point numbers
+
+complex64 and complex128 - complex numbers
+
+byte - alias for uint8, (0 to 255)
+rune - alias for int32 (represents Unicode code point)
+
+
+Ex:
+
+/* built-in-types.go */
+package main
+
+import (
+    "fmt"
+    "math/cmplx"
+)
+
+var (
+    goIsFun bool = true
+    maxInt uint64 = 1<<64 -1
+    complex complex128 = cmplx.Sqrt(-5 + 12i)
+)
+
+func main() {
+    const f = "%T = %v\n"
+    fmt.Printf(f, goIsFun, goIsFun)
+    fmt.Printf(f, maxInt, maxInt)
+    fmt.Printf(f, complex, complex)
+}
+
+$ go run built-in-types.go
+bool = true
+uint64 = 18446744073709551615
+complex128 = (2+3i)
+
+
+Type Conversion
+===============
+
+The expression T(v) converts the value v to the type T
+
+Some numeric conversions:
+
+var i int = 42
+var f float64 = float64(i)
+var u uint = uint(f)
+
+or, the same can be simplified as below when used inside a function
+
+i := 42
+f := float64(i)
+u := uint(f)
+
+Go assignment between items of different types requires an explicit conversion
+
+i.e. we have to manually convert types if we are passing a variable to a function 
+that is expecting another type
+
+
+Type Assertion
+==============
+
+Type assertion takes a value and tries to create another version in the
+specified explicit value
+
+i.e. If we have a value and want to convert it to a specific type,
+then we can use type assertion
+
+In the example below, timeMap function takes a value and checks to see
+if the value type can be asserted as a map of interface{} keyed by strings,
+then it injects a new entry "updated_at" with the current time value
+
+/* type-assertion.go */
+package main
+
+import "fmt"
+import "time"
+
+func timeMap(myval interface{}) {
+    val, ok := myval.(map[string]interface{})
+    if ok {
+        val["updated_at"] = time.Now()
+    }
+}
+
+func main() {
+    foo := map[string]interface{}{
+        "Matt": 42,
+    }
+    timeMap(foo)
+    fmt.Println(foo)
+}
+
+
+Type assertion is often used when we have a function that takes
+a parameter of a specific interface, but the function behaves 
+differently based on the actual parameter type
+
+Ex:
+
+package main
+
+import "fmt"
+
+/* Stringer interface */
+type Stringer interface {
+    String() string
+}
+
+type fakeString struct {
+    content string
+}
+
+/* Function String of fakeString struct that returns a string */
+/* This function implements the stringer interface */
+func (s *fakeString) String() string {
+    return s.content
+}
+
+/* interface{} is a empty interface, that doesn't contain any method */
+/* every type implements all 0 methods of the empty interface */
+/* A function that takes a parameter of type interface{} in reality accepts any type */
+func printString(value interface{}) {
+    switch str := value.type() {
+    case string:
+        fmt.Println(str)
+    case Stringer:
+        fmt.Println(str.String())
+    }
+}
+
+func main() {
+    s := &fakeString{"I love Go"}
+    printString(s)
+    printString("Hello, Gophers")
+}
+
+
+Another use of Type assertion is when checking if an error is of certain type
+
+if err != nil {
+  if msqlerr, ok := err.(*mysql.MySQLError); ok && msqlerr.Number == 1062 {
+      log.Println("We got a MySQL duplicate !")
+  } else {
+      return err
+  }
+}
+
