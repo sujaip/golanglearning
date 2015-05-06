@@ -1,3 +1,205 @@
 Variables & Inferred Typing
 ===========================
 
+The var statement declares a list of variables with the type declared last
+
+Ex:
+
+var (
+        name     string
+        age      int
+        location string
+)
+
+or
+
+var (
+        name, location string
+        age            int
+)
+
+Variables can also be declared one by one
+
+Ex:
+
+var name string
+var age int
+var location string
+
+var declaration can also include initializers for the variables
+
+Ex:
+
+var (
+        name string = "My Name"
+        age int = 32
+        location string = "Bronx"
+)
+
+Type can be omitted if an initializer is present,
+the variable will take type of the initializer (inferred typing)
+
+Ex:
+
+var (
+        name = "My name"
+        age  = 32
+        location = "Bronx"
+)
+
+We can also initialize variables on the same line
+
+Ex:
+
+var (
+        name, location, age = "My name", "Bronx", 32
+)
+
+or 
+
+var name, location, age = "My name", "Bronx", 32
+
+
+Short Assignment ( := )
+=======================
+
+The := short assignment statement can be used inside a function with implicit type,
+in place of var decleration
+
+Ex:
+
+func main() {
+    name, location, := "My name", "Bronx"
+    age = 32
+    fmt.Printf("%s (%d) of %s", name, age, location )
+}
+
+:= construct is not available outside a function
+
+Functions as variables
+======================
+
+A variable can contain any type, including functions
+
+Ex:
+
+func main() {
+    action := func() {
+                  fmt.Println("Action from func!")
+    }
+    action()
+}
+
+Constants
+=========
+
+Constants are declared like variables, but with "const" keyword
+Constants can only be character, string, boolean, or numeric values
+Constants can't be declared using the := syntax
+An untyped constant takes the type needed by its context
+
+Ex:
+
+const Pi = 3.14
+const (
+    StatusOk = 200
+    StatusCreated = 201
+    StatusAccepted = 202
+    StatusNonAuthoritativeInfo = 203
+    StatusNoContent = 204
+    StatusResetContent = 205
+    StatusPartialContent = 206
+)
+
+
+Ex:
+
+/* constantExOne.go */
+package main
+
+import "fmt"
+
+const (
+    Pi = 3.14
+    Truth = false
+    Big = 1 << 100
+    Small = Big >> 99
+)
+
+func main() {
+    const Greeting = "Hello There"
+    fmt.Println(Greeting)
+    fmt.Println(Pi)
+    fmt.Println(Truth)
+}
+
+fmt.Println prints the passed variable or constants value and appends a newline
+fmt.Printf is used when we want to print values using format specifiers
+
+Ex:
+
+func main() {
+    name := "Caprica-Six"
+    aka := fmt.Sprintf("Number %d", 6)
+    fmt.Printf("%s is also known as %s", name, aka)
+}
+
+Packages and imports
+====================
+
+Every Go program is made up of packages
+Programs start running in package main
+
+Ex:
+
+package main
+
+func main() {
+    print("Hello, World!\n")
+}
+
+If we are writing an executable code (versus a library), then we need to define
+a main package and a main() function which will be the entry point in to our software
+
+For imported packages, the package name is the same as the last element of the
+import path by convention.
+
+Ex:
+
+import "math/rand"
+
+the "math/rand" package comprises files that begin with statement "package rand"
+
+import statements can be individual or grouped
+
+Ex:
+
+import "fmt"
+import "math/rand"
+
+or
+
+import (
+    "fmt"
+    "math/rand"
+)
+
+Non standard library packages are usually namespaced using a web url.
+
+For instance, Go port of Rails 4 cryptography is hosted at the below url
+http://github.com/mattetti/goRailsYourself
+
+To import the crypto package, we would use the below import statement
+
+import "github.com/mattetti/goRailsYourself/crypto"
+
+this tells the compiler to import the crypto package available at the github path
+it does not mean that the compiler will automatically pull down the repo
+
+we will need to pull down the code ourself, easiest way is to use the "go get" command
+
+$ go get github.com/mattetti/goRailsYourself/crypto
+
+This command will pull the code and put it in our Go path.
+
+
