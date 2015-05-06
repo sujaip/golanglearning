@@ -201,5 +201,249 @@ we will need to pull down the code ourself, easiest way is to use the "go get" c
 $ go get github.com/mattetti/goRailsYourself/crypto
 
 This command will pull the code and put it in our Go path.
+GOPATH environment variable is usually set when we install GO
 
 
+We should store our code (our workspace) under GOPATH
+$ ls $GOPATH
+bin  pkg  src
+
+bin folder will contain compiled Go binaries,
+we should probably add the bin path to our system path
+
+pkg folder contains the compiled versions of the available libraries,
+so the compiler can link against them without recompiling them
+
+src folder contains all the Go source code organized by import path
+
+$ ls $GOPATH/src
+bitbucket.org   code.google.com   github.com
+
+$ ls $GOPATH/src/github.com/mattetti
+goblin  goRailsYourself  jet
+
+Its recomended to start a new project inside the src folder,
+using a fully qualified path
+for instance: github.com/<our username>/<project name>
+
+Exported Names
+==============
+
+After importing a package we can refer to the names the package exports
+i.e. variables, methods, and functions that are available for use
+
+In Go, a name is exported if it begins with a capital letter
+FOO and Foo are exported names, foo is not a exported name
+
+Ex:
+
+package main
+
+import (
+    "fmt"
+    "math"
+)
+
+func main() {
+    fmt.Println(math.pi)
+}
+
+Running this will give the below error
+"cannot refer to unexported name math.pi"
+
+i.e. pi is not exported, we should use Pi which is exported and available for use
+
+func main() {
+    fmt.Println(math.Pi)
+}
+
+
+Functions, signature, return values, named results
+==================================================
+
+A function can take zero or more typed arguments
+The type comes after the variable name
+Functions can be defined to return any number of values
+Function return values are always typed
+
+Ex:
+
+package main
+
+import "fmt"
+
+/* Function takes two int arguments and returns an int value */
+func add(x, y int) int {
+    return x + y
+}
+
+func main() {
+    fmt.Println(add(42, 13))
+}
+
+
+location function in the below example returns two string values
+
+package main
+
+import "fmt"
+
+func location(city string) (string, string) {
+    var region string
+    var country string
+
+    switch city {
+    case "Los Angeles", "LA", "Santa Monica":
+        region, country = "California", "United States"
+    case "New York", "NYC":
+        region, country = "New York", "United States"
+    case "Bangalore", "KA":
+        region, country = "South India", "Republic of India"
+    default:
+        region, country = "Unknown", "Unknown"
+    }
+    return region, country
+}
+
+func main() {
+    mattregion, mattcountry := location("Santa Monica")
+    fmt.Printf("Matt lives in %s, %s\n", mattregion, mattcountry )
+    myregion, mycountry := location("Bangalore")
+    fmt.Printf("Sujai lives in %s, %s\n", myregion, mycountry)
+}
+
+
+Functions can return multiple "result parameters"
+Function return values can be named just like variables
+
+If the result parameters are named, then
+a return statement without arguments returns the current values of the results
+
+Ex:
+
+package main
+
+import "fmt"
+
+func location(namein, city string) (name, country string) {
+    name = namein
+    switch city {
+    case "New York", "LA", "Chicago":
+        country = "United States"
+    case "Bangalore", "Chennai", "Mumbai":
+        country = "Republic of India"
+    default:
+        country = "Unknown"
+    }
+    return
+}
+
+func main() {
+    myname, mycountry := location("Sujai", "Bangalore")
+    fmt.Printf("%s lives in %s\n", myname, mycountry)
+    mattname, mattcountry := location("Matt", "LA")
+    fmt.Printf("%s lives in %s\n", mattname, mattcountry)
+}
+
+Recomendation is to avoid named return parameters as they often cause more
+confusion than the time saved, and distrub the clarity of our code
+
+Pointers
+========
+
+Go has pointers, but no pointer arithmatic :)
+
+Struct fields can be accessed through a struct pointer
+Indirection through pointer is transparent
+We can directly call fields and methods on a pointer
+
+By default Go passes arguments by value, copying the arguments
+If we want to pass arguments by reference, we need to pass pointers
+
+Go's inbuilt data structures like slices and maps use reference values
+
+Use & symbol in front of the value, to get the pointer of a value.
+Use * symbol to derefrence a pointer
+
+Methods are often defined on pointers than on values,
+so we will often store a pointer in a variable as in the below snippet
+
+client := &http.Client{}
+resp, err := client.Get("http://gobootcamp.com")
+
+Mutability
+==========
+
+Only constants are immutable in Go
+
+However because arguments are passed by value,
+a function receiving a value argument and mutating it won't mutate the original
+
+Ex:
+
+/* pass-by-value.go */
+package main
+
+import "fmt"
+
+type Artist struct {
+    Name, Genre string
+    Songs int
+}
+
+func newRelease(a Artist) int {
+    a.Songs++
+    return a.Songs
+}
+
+func main() {
+
+    me := Artist{Name: "Sujai", Genre: "Tribal", Songs: 9}
+    fmt.Printf("%s released his %dth song\n", me.Name, newRelease(me))
+    fmt.Printf("%s has a total of %d songs\n", me.Name, me.Songs)
+
+}
+
+$ go run pass-by-value.go
+Sujai released his 10th song
+Sujai has a total of 9 songs
+
+As we can see the total number of songs on the me variable's value was not changed
+
+To mutate the passed value, we have to pass it by reference using a pointer
+
+Ex:
+
+/* pass-by-reference.go */
+package main
+
+import "fmt"
+
+type Artist struct {
+    Name, Genre string
+    Songs int
+}
+
+/* Now the newRelease takes a pointer to Artist */
+func newRelease(a *Artist) int {
+    a.Songs++
+    return a.Songs
+}
+
+func main() {
+
+    /* here we use & symbol to get a pointer to Artist */
+    me := &Artist{Name: "Sujai", Genre: "Tribal", Songs: 9}
+    fmt.Printf("%s released his %dth song\n", me.Name, newRelease(me))
+    fmt.Printf("%s has a total of %d songs\n", me.Name, me.Songs)
+
+}
+
+$ go run pass-by-reference.go
+Sujai released his 10th song
+Sujai has a total of 10 songs
+
+
+---------------
+Chapter 3 Types
+---------------
