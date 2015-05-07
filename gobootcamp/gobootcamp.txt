@@ -615,3 +615,387 @@ if err != nil {
   }
 }
 
+
+Structs
+=======
+
+Struct is a collection of fields / properties
+We can define new types as structs or interfaces
+
+Structs can be though of as light class that supports composition,
+but does not support inheritance
+
+We don't need to define getters and setters on struct fields,
+they can be accessed automatically.
+
+However only exported fields (Capitalized) of a struct can be
+accessed from outside of a package
+
+A struct literal sets a newly allocated struct value by listing
+the values of its fields
+
+We can list just a subset of fields by using the "Name:" syntax
+(order of named fields is irrelevant when using this Syntax)
+
+The special prefix & constructs a pointer to a newly allocated struct
+---------------------------------------------------------------------
+
+Ex:
+
+/* struct-example.go */
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+type Bootcamp struct {
+    // Latitude of the event
+    Lat float64
+    /// Longitude of the event
+    Lon float64
+    // Date of the event
+    Date time.Time
+}
+
+func main() {
+    fmt.Println(Bootcamp{Lat: 34.012836, Lon: -118.495338, Date: time.Now(), })
+}
+
+$ go run struct-example.go
+{34.012836, -118.495338, 2015-05-07 11:37:00 +0000 UTC}
+
+
+Ex:
+
+
+/* decleration-of-struct-literals.go */
+package main
+
+import "fmt"
+
+type Point struct {
+    X, Y int
+}
+
+var (
+    p = Point{1, 2}  // has a type Point
+    q = &Point{1, 2} // has a type *Point
+    r = Point{X: 1} // Y: 0 is implicit
+    s = Point{} // X:0 and Y:0
+)
+
+func main() {
+    fmt.Println(p, 1, r, s)
+}
+
+$ go run decleration-of-struct-literals.go
+{1 2} &{1 2} {1 0} {0 0}
+
+
+Accessing struct fields using the dot notation:
+
+Ex:
+
+/* struct-dot-notation.go */
+package main()
+
+import (
+    "fmt"
+    "time"
+)
+
+type Bootcamp struct {
+    Lat, Lon float64
+    Date time.Time
+}
+
+func main() {
+    event := BootCamp{ Lat: 34.012836, Lon: -118.495338,}
+
+    /* Dot Notation */
+    event.Date = time.Now()
+    fmt.Printf("Event on %s, location (%f, %f)",
+            event.Date, event.Lat, event.Lon)
+}
+
+
+Initializing
+============
+
+Common way to "initialize" a struct variable, or a variable containing
+a reference to a struct, is to create a struct literal
+
+Another way is to create a constructor with new
+
+x := new(int)
+
+new expression allocates a zero value of the requested type and returns a pointer to it
+---------------------------------------------------------------------------------------
+
+/* new-struct-initializer.go */
+package main
+
+import "fmt"
+
+type Bootcamp struct {
+    Lat float64
+    Lon float64
+}
+
+func main() {
+    x := new(Bootcamp)
+    y := &Bootcamp{}
+    fmt.Println(*x == *y)
+}
+
+$ go run new-struct-initializer.go
+true
+
+new is Go's built-in function that allocates memory
+new does not initialize the memory, new only zeros it
+
+new(T) allocates zeroed storage for a new item of Type T and
+returns its address, a value of type *T
+
+i.e. new returns a pointer to a newly allocated zero value of type T
+
+NOTE:
+Slices, Maps, and Channels are usually allocated using the built-in function make
+so that the data structure these types are built upon can be initialized
+
+Composition Vs Inheritance
+==========================
+
+Go does not support inheritance
+Instead we have to think in terms of composition and interfaces
+
+Composition or embedding is a well understood concept of most OOP programs
+
+Ex:
+
+/* composition.go */
+package main
+
+import "fmt"
+
+type User struct {
+    Id int
+    Name string
+    Location string
+}
+
+type Player struct {
+    User
+    GameId int
+}
+
+func main() {
+    p := Player{}
+    p.Id = 42
+    p.Name = "Sujai"
+    p.Location = "KA"
+    p.GameId = 90404
+    fmt.Printf("%+v", p)
+}
+
+$ go run composition.go
+{User:{Id:42 Name:Sujai Location:KA} GameId:90404}
+
+Here the Player struct has the same fields as the User struct,
+but it also has a GameId field, we have simplified by composing our Player struct
+
+We can initialize a new variable of type Player in two different ways
+
+1. Using the dot notation as in the above example
+2. Using a struct literal as in the below example
+
+/* composing-struct-literal.go */
+package main
+
+import "fmt"
+
+type User struct {
+    Id int
+    Name, Location string
+}
+
+type Player struct {
+    User
+    GameId int
+}
+
+func main() {
+    /* Initialising with struct literal */
+    p := Player{ User{Id: 42, Name: "Matt", Location: "LA"}, 90404,}
+    
+    fmt.Printf("Id: %d, Name: %s, Location: %s, Game Id: %d\n",
+                p.Id, p.Name, p.Location, p.GameId)
+
+    /* Directly set a field name on the Player struct */
+    p.Id = 11
+    fmt.Printf("Id: %d, Name: %s, Location: %s, Game Id: %d\n",
+                p.Id, p.Name, p.Location, p.GameId)
+}
+
+$ go run composing-struct-literal.go
+Id: 42, Name: Matt, Location: LA, Game Id: 90404
+Id: 11, Name: Matt, Location: LA, Game Id: 90404
+
+Because the Player struct is composed of User struct,
+methods on User struct are also available to the Player struct
+--------------------------------------------------------------
+
+Ex:
+
+/* composition-method.go */
+package main
+
+import "fmt"
+
+type User struct {
+    Id int
+    Name, Location string
+}
+
+/* method on pointer to User that returns a string */
+func (u *User) Greetings() string {
+    return fmt.Sprintf("Hi %s from %s", u.Name, u.Location)
+}
+
+type Player struct {
+    User
+    GameId int
+}
+
+func main() {
+    /* Initialising with dot notation */
+    p1 := Player{}
+    p1.Id = 42
+    p1.Name = "Sai"
+    p1.Location = "KA"
+    p1.GameId = 90404
+
+    /* Initialising with struct literal */
+    p2 := Player{ User{Id: 42, Name: "Sujai", Location: "TVM"}, 90404,}
+
+    fmt.Println(p1.Greetings())
+    fmt.Println(p2.Greetings())
+}
+
+$ go run 
+Hi Sai from KA
+Hi Sujai from TVM
+
+Composition is a very powerful way to build data structures
+Its even more interesting when we think about it in the context of interfaces
+
+-------------------------------------------------------------------------------
+By composing our structure with a structure that implements a given interface,
+our structure automatically implements the interface
+-------------------------------------------------------------------------------
+
+In the below example we will look at implementing a Job struct
+that can also behave as a logger
+
+package main
+
+import (
+    "log"
+    "os"
+)
+
+type Job struct {
+    Command string
+    Logger *log.Logger
+}
+
+func main() {
+    job := &Job{"demo", log.New(os.Stderr, "Job: ", log.Ldate)}
+    job.Logger.Print("Test Message")
+}
+
+$ go run
+Job: 2015/5/7 Test Message
+
+Here the Job struct has a field Logger which is a pointer to another type log.Logger
+We set the value of Logger during initialization,
+so we are able to call its Print function by chaining calls
+
+   job.Logger.Print()
+
+Go lets us to go even further and use implicit composition
+
+If we skip defining the field for our logger,
+then all methods available on a pointer to log.Logger are available from our struct
+
+Ex:
+
+/* implicit-composition.go */
+package main
+
+import "log"
+import "os"
+
+type Job struct {
+    Command string
+    *log.Logger
+}
+
+func main() {
+    job := &Job{"demo", log.New(os.Stderr, "Job: ", log.Lfate)}
+    job.Print("Starting now...")
+}
+
+Note that we still need to set the logger
+What is really nice with the implicit composition is that it allows us to
+cheaply and easily make our struct implement interfaces
+
+
+NOTE:
+-----
+It is better to compose the Player with a pointer to User struct,
+because in Go arguments are passed by value, and our User struct will have
+to be copied which is expensive
+
+Below example uses pointer to User struct for composing
+
+/* composing-pointer.go */
+package main
+
+import "fmt"
+
+type User struct {
+    Id int
+    Name, Location string
+}
+
+func (u *User) Greetings() string {
+    return fmt.Sprintf("Hi %s from %s\n", u.Name, u.Location)
+}
+
+type Player struct {
+    *User
+    GameId int
+}
+
+/*************************************/
+/* constructor for the Player struct */
+func NewPlayer(id int, name, location string, gameId int) *Player {
+    return &Player{
+        User: &User{id, name, location},
+        GameId: gameId,
+    }
+}
+
+func main() {
+    p := NewPlayer(35, "Sujai", "KA", 9611896909)
+    fmt.Println(p.Greetings())
+}
+
+**************
+IMPORTANT NOTE
+Methods defined on a pointer are also automatically available on the value itself
+
+
