@@ -1319,3 +1319,261 @@ func main() {
     }
     // nil!
 }
+
+Range
+=====
+
+range form of for loop iterates over a slice or a map
+range simplifies iterating over all the elements of slice and map
+
+/* range-example.go */
+package main
+
+import "fmt"
+
+var pow = []int{1, 2, 4, 8, 16}
+
+func main() {
+
+    /* here i is the index and v is the value */
+    for i, v := range pow {
+        fmt.Printf("2**%d = %d\n", i,v)
+    }
+}
+
+$ go run range-example.go
+2**0 = 1
+2**1 = 2
+2**2 = 4
+2**3 = 8
+2**4 = 16
+
+We can skip the index or value by assigning to _
+If we only want the index, we can drop the value entirely
+
+/* range-index-value.go */
+package main
+
+import "fmt"
+
+func main() {
+    pow := make([]int, 10)
+    for i := range pow {
+        pow[i] = 1 << uint(i)
+    }
+    for _, value := range pow {
+        fmt.Printf("%d ", value)
+    }
+    fmt.Println()
+}
+
+$ go run range-index-value.go
+1 2 4 8 16 32 64 128 256 512
+
+Break and Continue
+==================
+
+BREAK
+*****
+we can stop the iteration anytime using "break"
+
+/* range-break.go */
+package main
+
+import "fmt"
+
+func main() {
+    pow := make([]int, 10)
+    for i := range pow {
+        pow[i] = 1 << uint(i)
+        if pow[i] >= 16 {
+            break
+        }
+    }
+    fmt.Println(pow)
+}
+
+$ go run range-break.go
+[1 2 4 8 16 0 0 0 0 0]
+
+CONTINUE
+********
+
+continue is used to skip an iteration
+
+/* range-continue.go */
+package main
+
+import "fmt"
+
+func main() {
+    pow := make([]int, 10)
+    for i := range pow {
+
+        /* jump to next element if index is divisible by 2 */ 
+        if i%2 == 0 {
+            continue
+        }
+
+        pow[i] = 1 << uint(i)
+    }
+    fmt.Println(pow)
+}
+
+$ go run range-continue.go
+[0 2 0 8 0 32 0 128 0 512]
+
+Range and Maps
+==============
+
+Range can also be used on maps
+when used on maps, first parameter returned is the key and second parameter is the value
+
+/* range-map.go */
+package main
+
+import "fmt"
+
+func main() {
+    cities := map[string]int{
+        "New York": 8336697,
+        "Los Angeles": 3857799,
+        "Chicago": 2714856,
+    }
+    for key, value := range cities {
+        fmt.Printf("%s has %d inhabitants\n", key, value)
+    }
+}
+
+$ go run range-map.go
+Chicago has 2714856 inhabitants
+New York has 8336697 inhabitants
+Los Angeles has 3857799 inhabitants
+
+Exercise:
+=========
+Organise the elements of a string slice based on their length
+output should be a silice of slice of strings,
+each string should be grouped along with other strings of same length
+
+/* range-slice-ex.go */
+package main
+
+import "fmt"
+
+var names = []string{"A", "AD", "BC", "Pi", "LXC", "Ctl", "Matt", "John", "Emma", "Antonio", "Samantha","Alveres", "Viking", "Kruger", "Addison", "Isabella"}
+
+func main() {
+    var maxLen int
+    for _, name := range names {
+        if l := len(name); l > maxLen {
+            maxLen = l
+        }
+    }
+
+    output := make([][]string, maxLen)
+    fmt.Println(len(output))
+    for _, name := range names {
+        output[len(name)-1] = append(output[len(name)-1], name)
+    }
+
+    fmt.Printf("%v", output)
+    fmt.Println()
+}
+
+$ go run range-slice-ex.go
+8
+[[A] [AD BC Pi] [LXC Ctl] [Matt John Emma] [] [Viking Kruger] [Antonio Alveres Addison] [Samantha Isabella]]
+
+NOTE:
+To avoid an out of bound insert we need our output slice to be big enough
+That is why we made a first pass through all strings and found the longest
+
+Slices are zeor indexed, so when inserting the strings we insert it at length-1
+
+Maps
+====
+
+maps are similar to dictionaries in other languages
+
+in the below example we are mapping string city names to an integer std codes
+
+/* map-ex.go */
+package main
+
+import "fmt"
+
+func main() {
+
+    cities := map[string]int{
+        "Bangalore": 80,
+        "Chennai": 44,
+        "Mumbai": 22,
+        "Delhi": 11,
+    }
+    fmt.Printf("%#v", cities)
+}
+
+$ go run map-ex.go
+map[string]int{"Chennai":44, "Mumbai":22, "Delhi":11, "Bangalore":80}
+
+When not using map literals like above, we must create maps with make
+The nil map is empty and can not be assigned to
+
+Assignments should follow Go convention like in the below example
+
+package main
+
+import "fmt"
+
+type Vertex struct {
+    Lat, Lon float64
+}
+
+
+func main() {
+
+    m := make(map[string]Vertex)
+    m["Bell Labs"] = Vertex{40.68433, -74.39967}
+    fmt.Println(m["Bell Labs"])
+
+}
+
+NOTE:
+When using map litterals, if the top-level type is just a type name,
+the we can ommit it from the elements of the literal
+
+Ex:
+
+package main
+
+import "fmt"
+
+type Vertex struct {
+    Lat, Lon float64
+}
+
+var m = map[string]Vertex{
+    "Bell Labs": {40.68433, -74.39967},
+    "Google": {37.42202, -122.08408},
+}
+
+func main() {
+    fmt.Println(m)
+}
+
+Mutating Maps
+=============
+
+Insert or Update an element in map m: m[key] = elem
+
+Retrive an element: elem = m[key]
+
+Delete an element: delete(m, key)
+
+Test if a key is present: elem, ok = m[key]
+In this case if key is in m, then ok is true, if not ok is false
+
+
+
+
