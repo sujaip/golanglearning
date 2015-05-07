@@ -1576,4 +1576,178 @@ In this case if key is in m, then ok is true, if not ok is false
 
 
 
+Control Flow
+============
+
+
+IF Statement
+------------
+
+If statement is same as C, except that the () are gone, and the {} are required
+
+like for, if statement can start with a short statement to execute before the condition
+
+variables declared by the statement are only in scope until the end of the if
+
+variables declared inside an if short statement are also available inside any of the else blocks
+
+Ex:
+
+/* If statement */
+if answer != true {
+    return "wrong answer"
+}
+
+
+/* If with a short statement */
+if err := foo(); err != nil {
+    panic(err)
+}
+
+/* If and else statement */
+if v := math.Pow(x, n); v < lim {
+    return v
+} else {
+    fmt.Println("%g >= %g\n", v, lim)
+}
+
+FOR Loop
+--------
+
+Go has only one looping construct, the for loop
+
+for loop is same as C, except that () are gone, and the {} are required
+
+As in C or Java, we can leave the pre and post statements empty
+
+Ex:
+/* for loop */
+sum := 0
+for i := 0, i < 10; i++ {
+    sum += i
+}
+
+/* for loop without pre and post */
+sum := 1
+for ; sum < 1000; {
+    sum += sum
+}
+
+/* for loop as a while loop */
+sum := 1
+for sum < 1000 {
+    sum += sum
+}
+
+/* infinite loop */
+for {
+  fmt.Println("Do something forever")
+}
+
+
+Switch Case
+-----------
+
+switch case statement allows us to avoid doing complex series of if else statements
+
+Ex:
+
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+    now := time.Now().Unix()
+    mins := now % 2
+    switch mins {
+    case 0:
+        fmt.Println("even")
+    case 1:
+        fmt.Println("odd")
+    }
+}
+
+Few Notes About Switch Case:
+****************************
+We can only compare values of the same type
+We can set an optional default statement to be executed if all others fail
+We can use an expression in the case statement
+  i.e. for instance we can calculate a value to use in the case
+We can have multiple , seperated values per case
+We can execute all the following statements after a match using fallthrough statement
+We can use a break statement inside our matched statement to exit the switching process
+
+/* expressions in case */
+package main
+
+import "fmt"
+
+func main() {
+    num := 3
+    v := num % 2
+    switch v {
+    case 0:
+        fmt.Println("even")
+    /* expression in case */
+    case 3 - 2:
+        fmt.Println("odd")
+    }
+}
+
+
+/* multiple values in case */
+package main
+
+import "fmt"
+
+func main() {
+    score := 7
+    switch score {
+    case 0, 1, 3:
+        fmt.Println("Terrible")
+    case 4, 5:
+        fmt.Println("Mediocre")
+    case 6, 7:
+        fmt.Println("Not bad")
+    case 8, 9:
+        fmt.Println("Almost perfect")
+    case 10:
+        fmt.Println("hmm did you cheat?")
+    default:
+        fmt.Println(score, " off the chart")
+    }
+}
+
+/* fallthrough and break */
+package main
+
+import "fmt"
+import "time"
+
+func main() {
+    n := 1
+    switch n {
+    case 0:
+        fmt.Println("is zero")
+        fallthrough
+    case 1:
+        fmt.Println("<= 1")
+        fallthrough
+    case 2:
+        fmt.Println("<= 2")
+        fallthrough
+    case 3:
+        fmt.Println("<= 3")
+        if time.Now().Unix() % 2 == 0 {
+            fmt.Println("un pasito pa lante maria")
+            break
+        }
+        fallthrough
+    case 4:
+        fmt.Println("<= 4")
+    }
+}
+
+Cahpter 5 Excercise:
 
