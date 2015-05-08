@@ -1811,3 +1811,206 @@ func main() {
 
 }
 
+Methods
+=======
+
+Technically Go is not an Object Oriented Programming Language
+But, Types and Methods allow for an object-orientd style of programming
+
+No Inheritance
+**************
+Difference with other OO languages is that Go does not support type inheritance
+instead Go has a concept of interfaces
+
+A method is a function that has a defined receiver.
+in Go, we can define methods on struct types
+
+The method receiver appears in its own argument list between the func keyword and the method name
+
+Example:
+
+package main
+
+import "fmt"
+
+type User struct {
+    FirstName, LastName string
+}
+
+func (u User) Greeting() string {
+    return fmt.Sprintf("Dear %s %s", u.FirstName, u.LastName)
+}
+
+func main() {
+    u := User{"Sujai", "Prakasam"}
+    fmt.Println(u.Greeting())
+}
+
+NOTE:
+Unlike in other OO languages, methods are written outside of the struct
+i.e. the Greeting() method on User type could be defined anywhere in the package
+
+Code Organization
+=================
+Methods can be definedin any file in the package,
+but recommendation is to organize the code as shown below
+
+Example:
+
+package models
+
+//list of packages to import
+import (
+    "fmt"
+)
+
+// list of constants
+const (
+    ConstExample = "const before vars"
+)
+
+// list of variables
+var (
+    ExportedVar = 42
+    nonExportedVar = "so say we all"
+)
+
+// Main type(s) for the file
+// Try to keep the lowest amount of structs per file when possible
+type User struct {
+    FirstName, LastName string
+    Location *UserLocation
+)
+
+type UserLocation struct {
+    City, Country string
+}
+
+// List of Functions
+func NewUser(firstName, lastName string) *User {
+    return &User{FirstName: firstName, LastName: lastName,
+        Location: &UserLocation{City: "Santa Clara", Country: "USA",},
+    }
+}
+
+// List of Methods
+func (u *User) Greeting() string {
+    return fmt.Sprintf("Dear %s %s", u.FirstName, u.LastName)
+}
+
+Note:
+We can define a method on any type we define in our package
+We can't define a method on a basic type, or a type from another package
+
+Type Aliasing
+=============
+
+To define a method on a type that we don't own,
+we need to define an alias for the type we want to extend
+
+Example:
+
+package main
+
+import "fmt"
+import "strings"
+
+type MyStr string
+
+func (s MyStr) Uppercase() string {
+    return strings.ToUpper(string(s))
+}
+
+func main() {
+    fmt.Println(MyStr("test").Uppercase())
+}
+
+
+Example:
+
+package main
+
+import "fmt"
+import "math"
+
+type MyFloat float64
+
+// method that returns an absolute value of type float6
+func (f MyFloat) Abs() float64 {
+    if f < 0 {
+        return float64(-f)
+    }
+    return float644(f)
+}
+
+func main() {
+    f := MyFloat(-math.Sqrt2)
+    fmt.Println(f.Abs())
+}
+
+Method Receivers
+================
+
+Methods can be associated with a named type, or a pointer to a named type
+
+There are two reasons to use a pointer receiver
+> To avoid copying the value on each method call
+> So that the method can modify the value that its receiver points to
+
+Remember, by default Go passes everything by value
+
+Example:
+
+package main
+
+import "fmt"
+
+type User struct {
+    FirstName, SecondName string
+}
+
+func (u *User) Greeting() string {
+    return fmt.Sprintf("Dear %s %s", u.FirstName, u.SecondName)
+}
+
+func main() {
+    u := &User{"Sujai", "Prakasam"}
+    fmt.Println(u.Greeting())
+}
+
+
+Example:
+
+package main
+
+import "fmt"
+import "math"
+
+type Vertex struct {
+    X, Y float64
+}
+
+// This method modifies the receiver value
+// so it must be defined on a pointer type
+func (v *Vertex) Scale(f float64) {
+    v.X = v.X * f
+    v.Y = v.Y * f
+}
+
+
+// This method does not modify the receiver value
+// so it can be defined on value type
+func (v *Vertex) Abs() float64 {
+    return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func main() {
+    v := &Vertex{3, 4}
+    v.Scale(5)
+    fmt.Println(v, v.Abs())
+}
+
+Interfaces
+==========
+
+
