@@ -1749,5 +1749,65 @@ func main() {
     }
 }
 
-Cahpter 5 Excercise:
+**********
+Excercise:
+**********
+We have 50 bitcoins to distribute to 10 users
+Coins will be distributed based on vowels contained in each name
+
+Where:
+A: 1 Coin, E: 1 Coin, I: 2 Coins, O:, 3 coins, and U: 4 coins
+
+And each user can't get more than 10 coins
+
+Users:
+Matthew, Sarah, Augustus, Heidi, Emilie, Peter, Giana, Adriano, Aaron, and Elizabeth
+
+
+/* Solution */
+package main
+
+import "fmt"
+
+var (
+    coins = 50
+    users = []string{
+        "Matthew", "Sarah", "Augustus", "Heidi", "Emilie",
+        "Peter", "Giana", "Adriano", "Aaron", "Elizabeth",
+    }
+    distribution = make(map[string]int, len(users))
+)
+
+func main() {
+
+    coinsForUser := func(name string) int {
+        var total int
+        for i := 0; i < len(name); i++ {
+            switch string(name[i]) {
+            case "a", "A", "e", "E":
+                total++
+            case "i", "I":
+                total = total + 2
+            case "o", "O":
+                total = total + 3
+            case "u", "U":
+                total = total + 4
+            }
+        }
+        return total
+    }
+
+    for _, name := range users {
+        v := coinsForUser(name)
+        if v > 10 {
+            v = 10
+        }
+        distribution[name] = v
+        coins = coins - v
+    }
+
+    fmt.Println(distribution)
+    fmt.Println("Coins left:", coins)
+
+}
 
