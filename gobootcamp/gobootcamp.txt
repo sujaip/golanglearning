@@ -2127,3 +2127,53 @@ func main() {
         fmt.Println(err)
     }
 }
+
+
+/* Excercise */
+package main
+
+import "fmt"
+
+type ErrNegativeSqrt float64
+
+func (e ErrNegativeSqrt) Error() string {
+    return fmt.Sprintf("Can not Sqrt negative number: %g", float64(e))
+}
+
+func Sqrt(x float64) (float64, error) {
+
+    if x < 0 {
+        return 0, ErrNegativeSqrt(x)
+    }
+
+    z := 1.0
+    for i := 0; i < 10; i++ {
+        z = z - ((z*z)-x)/(2*z)
+    }
+    return z, nil
+
+}
+
+func main() {
+    fmt.Println(Sqrt(2))
+    fmt.Println(Sqrt(-2))
+}
+
+Concurrency
+===========
+
+Go's approach to concurrent programming is by passing arround shared values on channels
+Shared values are never actively shared by seperate threads of execution
+Only one goroutine has access to the value at any given time, Data races cannot occur by design
+
+Do not communicate by sharing memory; Share memory by communicating
+
+Using channels to control access makes it easier to write clear, correct programs
+
+Go's aproach to concurrency originates in Hoare's Communicating Sequential Processes
+It can also be seen as type safe generalization of Unix pipes
+
+
+
+
+
